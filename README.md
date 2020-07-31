@@ -2,6 +2,18 @@
 [![Analytics](https://ga-beacon.appspot.com/UA-174131810-1/Skitionek/README)](https://github.com/Skitionek)
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=Skitionek&count_private=true&show_icons=true)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Skitionek&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
+<!--START_SECTION:waka-->
+```text
+TypeScript   6 hrs 8 mins    ████████████░░░░░░░░░░░░░   50.76 % 
+JavaScript   2 hrs 52 mins   ██████░░░░░░░░░░░░░░░░░░░   23.78 % 
+JSON         1 hr 21 mins    ██░░░░░░░░░░░░░░░░░░░░░░░   11.26 % 
+Other        59 mins         ██░░░░░░░░░░░░░░░░░░░░░░░   08.24 % 
+Markdown     14 mins         ░░░░░░░░░░░░░░░░░░░░░░░░░   01.96 %
+```
+<!--END_SECTION:waka-->
+
+
 <!--
 **Skitionek/Skitionek** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
