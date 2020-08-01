@@ -1,7 +1,6 @@
-### Hi there 👋
-[![Analytics](https://ga-beacon.appspot.com/UA-174131810-1/Skitionek/README)](https://github.com/Skitionek)
-
 <img src="https://github-readme-stats.vercel.app/api?username=Skitionek&count_private=true&show_icons=true" width="700" />![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Skitionek&layout=compact)![Top Langs](./waka_stats.svg)
+
+[![Analytics](https://ga-beacon.appspot.com/UA-174131810-1/Skitionek/README)](https://github.com/Skitionek)
 
 
 
