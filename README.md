@@ -3,8 +3,6 @@
 
 <img src="https://github-readme-stats.vercel.app/api?username=Skitionek&count_private=true&show_icons=true" width="700" />
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=Skitionek&count_private=true&show_icons=true)
-
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Skitionek&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ![Top Langs](./waka_stats.svg)
 
