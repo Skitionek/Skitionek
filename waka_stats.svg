@@ -1,0 +1,40 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='350' height='170' view-box='0 0 350 170' fill='none'><style >
+                    .header {
+                        font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+                        fill: #2f80ed;
+                        animation: fadeInAnimation 0.8s ease-in-out forwards;
+                    }
+                    .lang-name {
+                        font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif;
+                        fill: #333;
+                    }
+                </style>
+<rect data-testid='card-bg' x='0.5' y='0.5' rx='4.5' height='99%' stroke='#E4E2E2' width='349' fill='#fffefe' stroke-opacity='1'></rect>
+<g data-testid='card-title' transform='translate(25, 35)'><g transform='translate(0, 0)'><text x='0' y='0' class='header' data-testid='header'>Most Used Languages</text></g></g>
+<g data-testid='main-card-body' transform='translate(0, 55)'><svg data-testid='lang-items' x='25'><mask id='rect-mask'><rect x='0' y='0' width='300' height='8' fill='white' rx='5'></rect></mask>
+<!--START_SECTION:waka-->
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='0' y='0' width='240.69' height='8' fill='#3572A5'></rect>
+<g transform='translate(0, 25)'><circle cx='5' cy='6' r='5' fill='#3572A5'></circle>
+<text data-testid='lang-name' x='15' y='10' class='lang-name'>Python 2 hrs 55 mins</text>
+<title >80.23%</title></g>
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='240.69' y='0' width='39.33' height='8' fill='#a54c4d'></rect>
+<g transform='translate(150, 25)'><circle cx='5' cy='6' r='5' fill='#a54c4d'></circle>
+<text data-testid='lang-name' x='15' y='10' class='lang-name'>YAML 28 mins</text>
+<title >13.11%</title></g>
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='280.02' y='0' width='8.46' height='8' fill='None'></rect>
+<g transform='translate(0, 50)'><circle cx='5' cy='6' r='5' fill='None'></circle>
+<text data-testid='lang-name' x='15' y='10' class='lang-name'>JSON 6 mins</text>
+<title >02.82%</title></g>
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='288.47999999999996' y='0' width='5.58' height='8' fill='#665a4e'></rect>
+<g transform='translate(150, 50)'><circle cx='5' cy='6' r='5' fill='#665a4e'></circle>
+<text data-testid='lang-name' x='15' y='10' class='lang-name'>TOML 4 mins</text>
+<title >01.86%</title></g>
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='294.05999999999995' y='0' width='4.38' height='8' fill='None'></rect>
+<g transform='translate(0, 75)'><circle cx='5' cy='6' r='5' fill='None'></circle>
+<text data-testid='lang-name' x='15' y='10' class='lang-name'>Other 3 mins</text>
+<title >01.46%</title></g>
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='298.43999999999994' y='0' width='0.96' height='8' fill='#5a6986'></rect>
+<g transform='translate(150, 75)'><circle cx='5' cy='6' r='5' fill='#5a6986'></circle>
+<text data-testid='lang-name' x='15' y='10' class='lang-name'>SQL 0 secs</text>
+<title >00.32%</title></g>
+<!--END_SECTION:waka--></svg></g></svg>
