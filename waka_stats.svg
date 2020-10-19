@@ -33,8 +33,8 @@
 <g transform='translate(0, 75)'><circle cx='5' cy='6' r='5' fill='None'></circle>
 <text data-testid='lang-name' x='15' y='10' class='lang-name'>JSON 1 hr 17 mins</text>
 <title >04.97%</title></g>
-<rect mask='url(#rect-mask)' data-testid='lang-progress' x='281.37000000000006' y='0' width='8.73' height='8' fill='#64C800'></rect>
-<g transform='translate(150, 75)'><circle cx='5' cy='6' r='5' fill='#64C800'></circle>
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='281.37000000000006' y='0' width='8.73' height='8' fill='#4d6977'></rect>
+<g transform='translate(150, 75)'><circle cx='5' cy='6' r='5' fill='#4d6977'></circle>
 <text data-testid='lang-name' x='15' y='10' class='lang-name'>Docker 45 mins</text>
 <title >02.91%</title></g>
 <!--END_SECTION:waka--></svg></g></svg>
