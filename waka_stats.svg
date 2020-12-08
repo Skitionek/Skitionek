@@ -17,8 +17,8 @@
 <g transform='translate(0, 25)'><circle cx='5' cy='6' r='5' fill='#3572A5'></circle>
 <text data-testid='lang-name' x='15' y='10' class='lang-name'>Python 12 hrs 49 mins</text>
 <title >49.10%</title></g>
-<rect mask='url(#rect-mask)' data-testid='lang-progress' x='147.3' y='0' width='45.9' height='8' fill='#f97732'></rect>
-<g transform='translate(150, 25)'><circle cx='5' cy='6' r='5' fill='#f97732'></circle>
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='147.3' y='0' width='45.9' height='8' fill='None'></rect>
+<g transform='translate(150, 25)'><circle cx='5' cy='6' r='5' fill='None'></circle>
 <text data-testid='lang-name' x='15' y='10' class='lang-name'>Other 3 hrs 59 mins</text>
 <title >15.30%</title></g>
 <rect mask='url(#rect-mask)' data-testid='lang-progress' x='193.20000000000002' y='0' width='37.92' height='8' fill='#f1e05a'></rect>
@@ -33,8 +33,8 @@
 <g transform='translate(0, 75)'><circle cx='5' cy='6' r='5' fill='None'></circle>
 <text data-testid='lang-name' x='15' y='10' class='lang-name'>JSON 1 hr 17 mins</text>
 <title >04.97%</title></g>
-<rect mask='url(#rect-mask)' data-testid='lang-progress' x='281.37000000000006' y='0' width='8.73' height='8' fill='#867db1'></rect>
-<g transform='translate(150, 75)'><circle cx='5' cy='6' r='5' fill='#867db1'></circle>
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='281.37000000000006' y='0' width='8.73' height='8' fill='#ff6375'></rect>
+<g transform='translate(150, 75)'><circle cx='5' cy='6' r='5' fill='#ff6375'></circle>
 <text data-testid='lang-name' x='15' y='10' class='lang-name'>Docker 45 mins</text>
 <title >02.91%</title></g>
 <!--END_SECTION:waka--></svg></g></svg>
