@@ -21,20 +21,20 @@
 <g transform='translate(150, 25)'><circle cx='5' cy='6' r='5' fill='#cb171e'></circle>
 <text data-testid='lang-name' x='15' y='10' class='lang-name'>YAML 28 mins</text>
 <title >13.11%</title></g>
-<rect mask='url(#rect-mask)' data-testid='lang-progress' x='280.02' y='0' width='8.46' height='8' fill='#244776'></rect>
-<g transform='translate(0, 50)'><circle cx='5' cy='6' r='5' fill='#244776'></circle>
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='280.02' y='0' width='8.46' height='8' fill='#44a51c'></rect>
+<g transform='translate(0, 50)'><circle cx='5' cy='6' r='5' fill='#44a51c'></circle>
 <text data-testid='lang-name' x='15' y='10' class='lang-name'>JSON 6 mins</text>
 <title >02.82%</title></g>
-<rect mask='url(#rect-mask)' data-testid='lang-progress' x='288.47999999999996' y='0' width='5.58' height='8' fill='#ff3e00'></rect>
-<g transform='translate(150, 50)'><circle cx='5' cy='6' r='5' fill='#ff3e00'></circle>
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='288.47999999999996' y='0' width='5.58' height='8' fill='#358a5b'></rect>
+<g transform='translate(150, 50)'><circle cx='5' cy='6' r='5' fill='#358a5b'></circle>
 <text data-testid='lang-name' x='15' y='10' class='lang-name'>TOML 4 mins</text>
 <title >01.86%</title></g>
-<rect mask='url(#rect-mask)' data-testid='lang-progress' x='294.05999999999995' y='0' width='4.38' height='8' fill='None'></rect>
-<g transform='translate(0, 75)'><circle cx='5' cy='6' r='5' fill='None'></circle>
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='294.05999999999995' y='0' width='4.38' height='8' fill='#882233'></rect>
+<g transform='translate(0, 75)'><circle cx='5' cy='6' r='5' fill='#882233'></circle>
 <text data-testid='lang-name' x='15' y='10' class='lang-name'>Other 3 mins</text>
 <title >01.46%</title></g>
-<rect mask='url(#rect-mask)' data-testid='lang-progress' x='298.43999999999994' y='0' width='0.96' height='8' fill='#2ACCA8'></rect>
-<g transform='translate(150, 75)'><circle cx='5' cy='6' r='5' fill='#2ACCA8'></circle>
+<rect mask='url(#rect-mask)' data-testid='lang-progress' x='298.43999999999994' y='0' width='0.96' height='8' fill='#6c616e'></rect>
+<g transform='translate(150, 75)'><circle cx='5' cy='6' r='5' fill='#6c616e'></circle>
 <text data-testid='lang-name' x='15' y='10' class='lang-name'>SQL 0 secs</text>
 <title >00.32%</title></g>
 <!--END_SECTION:waka--></svg></g></svg>
