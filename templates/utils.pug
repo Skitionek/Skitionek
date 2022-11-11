@@ -32,21 +32,32 @@ mixin img()
 
 mixin variable-picture(src, options={})
     if attributes['dark-mode'] || attributes['light-mode']
-        +img(
-            src=src + object_to_query(merge(
-                options,
-                (attributes['dark-mode'] || {})
-            )) + '#gh-dark-mode-only'
-        )&attributes(attributes)
-        +img(
-            src=src + object_to_query(merge(
-                options,
-                (attributes['light-mode'] || {})
-            )) + '#gh-light-mode-only'
-        )&attributes(attributes)
+        +img&attributes(merge(
+            attributes,
+            {
+                src: src + object_to_query(merge(
+                    options,
+                    (attributes['dark-mode'] || {})
+                )) + '#gh-dark-mode-only',
+                href: (attributes.href || '') + '#gh-dark-mode-only',
+                alt: (attributes.alt || '') + '-Dark'
+            }
+        ))
+        +img&attributes(merge(
+            attributes,
+            {
+                src: src + object_to_query(merge(
+                    options,
+                    (attributes['light-mode'] || {})
+                )) + '#gh-light-mode-only',
+                href: (attributes.href || '') + '#gh-light-mode-only',
+                alt: (attributes.alt || '') + '-Light'
+            }
+        ))
     else
-        +img(
-            src=src + object_to_query(options)
-        )&attributes(attributes)
+        +img&attributes(merge(
+            attributes,
+            {src: src + object_to_query(options)}
+        ))
     |
     |
