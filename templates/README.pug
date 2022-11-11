@@ -9,19 +9,6 @@ include utils.pug
 include variable-images/github-readme-stats.pug
 include variable-images/github-readme-streak-stats.pug
 
-mixin a()
-    a&attributes(merge(
-        {target: '_blank', rel: 'noreferrer'},
-        attributes
-    ))
-        if block
-            block
-mixin icon()
-    +a&attributes(pick(attributes, 'href', 'target', 'rel'))
-        img&attributes(merge(
-            {width: 40, align: 'center', height: 40},
-            ommit(attributes, 'href', 'target', 'rel')
-        ))
 +github-readme-stats({
     kind: 'pin',
     username: 'SBRG',
@@ -32,9 +19,7 @@ mixin icon()
     username: 'Skitionek',
     repo: 'notify-microsoft-teams'
 })
-hr
-|
-|
++hr
 +github-readme-stats({
     custom_title: 'Github stats'
 })

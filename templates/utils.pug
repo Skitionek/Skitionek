@@ -15,6 +15,28 @@
         return Object.fromEntries(Object.entries(obj).filter(([key]) => keys.includes(key)))
     }
 
+mixin a()
+    a&attributes(merge(
+        {target: '_blank', rel: 'noreferrer'},
+        attributes
+    ))
+        if block
+            block
+mixin img()
+    if attributes.href
+        +a&attributes(pick(attributes, 'href', 'target', 'rel'))
+            img&attributes(ommit(attributes, 'href', 'target', 'rel'))
+    else
+        img&attributes(attributes)
+    //|
+    //| [![!{attributes.alt || 'image placeholder'}](!{(attributes.src)})](!{attributes.href || '_blank'})
+
+mixin icon()
+    +img&attributes(merge(
+        {width: 40, align: 'center', height: 40},
+        ommit(attributes, 'href', 'target', 'rel')
+    ))
+
 // Does not work in firefox
 //mixin variable-picture(href, options={})
 //    picture
@@ -26,13 +48,10 @@
 //        img(
 //            src!=href + object_to_query(options)
 //        )&attributes(ommit(attributes, 'prefers-color-scheme'))
-mixin img()
-    |
-    | [![!{attributes.alt || 'image placeholder'}](!{(attributes.src)})](!{attributes.href || '_blank'})
 
 mixin variable-picture(src, options={})
     if attributes['dark-mode'] || attributes['light-mode']
-        +icon&attributes(merge(
+        +img&attributes(merge(
             attributes,
             {
                 src: src + object_to_query(merge(
@@ -43,7 +62,7 @@ mixin variable-picture(src, options={})
                 alt: (attributes.alt || '') + '-Dark'
             }
         ))
-        +icon&attributes(merge(
+        +img&attributes(merge(
             attributes,
             {
                 src: src + object_to_query(merge(
@@ -55,7 +74,12 @@ mixin variable-picture(src, options={})
             }
         ))
     else
-        +icon&attributes(merge(
+        +img&attributes(merge(
             attributes,
             {src: src + object_to_query(options)}
         ))
+
+mixin hr()
+    hr
+    |
+    |
