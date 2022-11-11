@@ -32,7 +32,7 @@ mixin img()
 
 mixin variable-picture(src, options={})
     if attributes['dark-mode'] || attributes['light-mode']
-        +img&attributes(merge(
+        +icon&attributes(merge(
             attributes,
             {
                 src: src + object_to_query(merge(
@@ -43,7 +43,7 @@ mixin variable-picture(src, options={})
                 alt: (attributes.alt || '') + '-Dark'
             }
         ))
-        +img&attributes(merge(
+        +icon&attributes(merge(
             attributes,
             {
                 src: src + object_to_query(merge(
@@ -55,7 +55,7 @@ mixin variable-picture(src, options={})
             }
         ))
     else
-        +img&attributes(merge(
+        +icon&attributes(merge(
             attributes,
             {src: src + object_to_query(options)}
         ))
