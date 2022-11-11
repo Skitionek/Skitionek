@@ -1,6 +1,6 @@
 -
     function object_to_query(obj) {
-        return '?' + Object.entries(obj).map(([k,v]) => `${k}=${v}`).join('&')
+        return '?' + new URLSearchParams(obj)
     }
     function merge(...objs) {
         return Object.assign({}, ...objs)
@@ -35,17 +35,18 @@ mixin variable-picture(href, options={})
                     (attributes['dark-mode'] || {})
             )) + '#gh-dark-mode-only'
         |
-        | ![!{attributes.alt || 'image placeholder'}](!{dark_href})
         |
+        | ![!{attributes.alt || 'image placeholder'}](!{dark_href})
         -
             var light_href = href + object_to_query(merge(
                     options,
                     (attributes['light-mode'] || {})
             )) + '#gh-light-mode-only'
+
+        |
         |
         | ![!{attributes.alt || 'image placeholder'}](!{light_href})
-        |
     else
         |
-        | ![!{attributes.alt || 'image placeholder'}](!{href + object_to_query(options)})
         |
+        | ![!{attributes.alt || 'image placeholder'}](!{href + object_to_query(options)})

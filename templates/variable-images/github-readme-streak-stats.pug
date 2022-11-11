@@ -15,8 +15,5 @@ mixin github-readme-streak-stats(options={})
             options
         )
         )(
-        prefers-color-scheme={
-            'dark': { 'theme': 'dark' },
-            'light': { 'theme': 'light' }
-        }
+        dark-mode={ theme: 'dark' }
     )&attributes(attributes)
