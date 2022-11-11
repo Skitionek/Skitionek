@@ -26,27 +26,25 @@
 //        img(
 //            src!=href + object_to_query(options)
 //        )&attributes(ommit(attributes, 'prefers-color-scheme'))
+mixin img()
+    |
+    | [![!{attributes.alt || 'image placeholder'}](!{(attributes.src)})](!{attributes.href || '_blank'})
 
-mixin variable-picture(href, options={})
+mixin variable-picture(src, options={})
     if attributes['dark-mode'] || attributes['light-mode']
-        -
-            var dark_href = href + object_to_query(merge(
-                    options,
-                    (attributes['dark-mode'] || {})
+        +img(
+            src=src + object_to_query(merge(
+                options,
+                (attributes['dark-mode'] || {})
             )) + '#gh-dark-mode-only'
-        |
-        |
-        | ![!{attributes.alt || 'image placeholder'}](!{dark_href})
-        -
-            var light_href = href + object_to_query(merge(
-                    options,
-                    (attributes['light-mode'] || {})
+        )&attributes(attributes)
+        +img(
+            src=src + object_to_query(merge(
+                options,
+                (attributes['light-mode'] || {})
             )) + '#gh-light-mode-only'
-
-        |
-        |
-        | ![!{attributes.alt || 'image placeholder'}](!{light_href})
+        )&attributes(attributes)
     else
-        |
-        |
-        | ![!{attributes.alt || 'image placeholder'}](!{href + object_to_query(options)})
+        +img(
+            src=href + object_to_query(options)
+        )&attributes(attributes)
