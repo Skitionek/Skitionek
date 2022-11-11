@@ -6,6 +6,15 @@
         'count_private': true
     }
 
+    function github_readme_stats_href(options) {
+        switch (options.kind) {
+            case 'pin':
+                return `https://github.com/${options.username}/${options.repo}`
+            default:
+                return `https://github.com/${options.username}`
+        }
+    }
+
 mixin github-readme-stats(options={})
     +variable-picture(
         'https://github-readme-stats.vercel.app/api' + (options.kind ? `/${options.kind}/` : ''),
@@ -15,5 +24,6 @@ mixin github-readme-stats(options={})
         )
         )(
         dark-mode={ theme: 'dark' },
-        valgin='top'
+        valgin='top',
+        href=attributes.href || github_readme_stats_href(options)
     )&attributes(attributes)
