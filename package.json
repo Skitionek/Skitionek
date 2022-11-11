@@ -1,0 +1,12 @@
+{
+  "name": "Skitionek",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Skitionek/Skitionek.git",
+  "author": "Dominik Mariusz Maszczyk <dommas@biosustain.dtu.dk>",
+  "license": "MIT",
+  "devDependencies": {
+    "pug": "^3.0.2",
+    "pug-cli": "^1.0.0-alpha6"
+  }
+}
