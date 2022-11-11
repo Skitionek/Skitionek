@@ -28,8 +28,6 @@ mixin img()
             img&attributes(ommit(attributes, 'href', 'target', 'rel'))
     else
         img&attributes(attributes)
-    //|
-    //| [![!{attributes.alt || 'image placeholder'}](!{(attributes.src)})](!{attributes.href || '_blank'})
 
 mixin icon()
     +img&attributes(merge(
@@ -52,7 +50,7 @@ mixin icon()
 mixin variable-picture(src, options={})
     if attributes['dark-mode'] || attributes['light-mode']
         +img&attributes(merge(
-            attributes,
+            ommit(attributes, 'dark-mode', 'light-mode'),
             {
                 src: src + object_to_query(merge(
                     options,
@@ -63,7 +61,7 @@ mixin variable-picture(src, options={})
             }
         ))
         +img&attributes(merge(
-            attributes,
+            ommit(attributes, 'dark-mode', 'light-mode'),
             {
                 src: src + object_to_query(merge(
                     options,
@@ -75,7 +73,7 @@ mixin variable-picture(src, options={})
         ))
     else
         +img&attributes(merge(
-            attributes,
+            ommit(attributes, 'dark-mode', 'light-mode'),
             {src: src + object_to_query(options)}
         ))
 

@@ -2,8 +2,9 @@
     var github_readme_stats = {
         'username': username,
         'bg_color': '00000000',
-        'hide_border': true,
-        'count_private': true
+        hide_border: true,
+        count_private: true,
+        title_color: style.accent
     }
 
     function github_readme_stats_href(options) {
@@ -24,6 +25,9 @@ mixin github-readme-stats(options={})
         )
         )(
         dark-mode={ theme: 'dark' },
+        light-mode={
+            text_color: '000000'
+        }
         valgin='top',
         href=attributes.href || github_readme_stats_href(options)
     )&attributes(attributes)
