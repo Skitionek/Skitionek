@@ -34,12 +34,18 @@ mixin variable-picture(href, options={})
                     options,
                     (attributes['dark-mode'] || {})
             )) + '#gh-dark-mode-only'
-        | ![!{attributes.alt || ''}](!{dark_href})
+        |
+        | ![!{attributes.alt || 'image placeholder'}](!{dark_href})
+        |
         -
             var light_href = href + object_to_query(merge(
                     options,
                     (attributes['light-mode'] || {})
             )) + '#gh-light-mode-only'
-        | ![!{attributes.alt || ''}](!{light_href})
+        |
+        | ![!{attributes.alt || 'image placeholder'}](!{light_href})
+        |
     else
-        | ![!{attributes.alt || ''}](!{href + object_to_query(options)})
+        |
+        | ![!{attributes.alt || 'image placeholder'}](!{href + object_to_query(options)})
+        |
