@@ -46,5 +46,7 @@ mixin variable-picture(src, options={})
         )&attributes(attributes)
     else
         +img(
-            src=href + object_to_query(options)
+            src=src + object_to_query(options)
         )&attributes(attributes)
+    |
+    |
