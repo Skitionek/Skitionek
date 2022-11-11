@@ -9,33 +9,6 @@ include utils.pug
 include variable-images/github-readme-stats.pug
 include variable-images/github-readme-streak-stats.pug
 
-+github-readme-stats({
-    kind: 'pin',
-    username: 'SBRG',
-    repo: 'lifelike'
-})
-+github-readme-stats({
-    kind: 'pin',
-    username: 'Skitionek',
-    repo: 'notify-microsoft-teams'
-})
-+hr
-+github-readme-stats({
-    custom_title: 'Github stats'
-})
-+github-readme-stats({
-    kind: 'top-langs',
-    layout: 'compact',
-    langs_count: 10
-})
-+github-readme-stats({
-    kind: 'wakatime',
-    username: '26161014-caaa-405e-86cb-efcd2ca9553e',
-    layout: 'compact',
-    langs_count: 10,
-    custom_title: 'Activity'
-})
-+github-readme-streak-stats
 h1(align="center") I'm Dominik
 h3(align="center") A passionate full stack developer with background in embedded systems
 p(align="left")
@@ -234,4 +207,33 @@ p(align="left")
             }
             alt="skitionek"
         )
- 
+
+h3(align="left") Pinned repositories:
++github-readme-stats({
+    kind: 'pin',
+    username: 'SBRG',
+    repo: 'lifelike'
+})
++github-readme-stats({
+    kind: 'pin',
+    username: 'Skitionek',
+    repo: 'notify-microsoft-teams'
+})
++hr
+h3(align="left") My Github activity:
++github-readme-stats({
+    custom_title: 'Github stats'
+})
++github-readme-stats({
+    kind: 'top-langs',
+    layout: 'compact',
+    langs_count: 10
+})
++github-readme-stats({
+    kind: 'wakatime',
+    username: '26161014-caaa-405e-86cb-efcd2ca9553e',
+    layout: 'compact',
+    langs_count: 10,
+    custom_title: 'Activity'
+})
++github-readme-streak-stats
