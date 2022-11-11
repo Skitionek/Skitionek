@@ -24,7 +24,10 @@ mixin github-readme-stats(options={})
             ommit(options, 'kind')
         )
         )(
-        dark-mode={ theme: 'dark' },
+        dark-mode={
+            theme: 'dark',
+            text_color: 'c9d1d9'
+        },
         light-mode={
             text_color: '000000'
         }
