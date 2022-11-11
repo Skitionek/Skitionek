@@ -5,7 +5,6 @@
 <!-- Does not work in firefox--><!--mixin variable-picture(href, options={})--><!--    picture--><!--        each media_kv in Object.entries(attributes['prefers-color-scheme'] || {})--><!--            source(--><!--                media=`(prefers-color-scheme: ${media_kv[0]})`--><!--                srcset!=href + object_to_query(merge(options, media_kv[1]))--><!--            )--><!--        img(--><!--            src!=href + object_to_query(options)--><!--        )&attributes(ommit(attributes, 'prefers-color-scheme'))-->
 
 ![image placeholder-Dark](https://github-readme-stats.vercel.app/api/pin/?username=SBRG&bg_color=00000000&hide_border=true&count_private=true&repo=lifelike&theme=dark#gh-dark-mode-only)
-
 ![image placeholder-Light](https://github-readme-stats.vercel.app/api/pin/?username=SBRG&bg_color=00000000&hide_border=true&count_private=true&repo=lifelike#gh-light-mode-only)
 
 ![image placeholder](https://github-readme-stats.vercel.app/api/pin/?username=Skitionek&bg_color=00000000&hide_border=true&count_private=true&repo=notify-microsoft-teams&theme=dark#gh-dark-mode-only)
