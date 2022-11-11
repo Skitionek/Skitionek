@@ -1,8 +1,8 @@
 ![GitHub-Mark-Light](https://user-images.githubusercontent.com/3369400/139447912-e0f43f33-6d9f-45f8-be46-2df5bbc91289.png#gh-dark-mode-only)
 ![GitHub-Mark-Dark](https://user-images.githubusercontent.com/3369400/139448065-39a229ba-4b06-434b-bc67-616e2ed80c8f.png#gh-light-mode-only)
 
-[![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api/pin/?username=SBRG&bg_color=00000000&hide_border=true&count_private=true&repo=lifelike&theme=dark#gh-dark-mode-only)
-[![Anurag's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
+![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api/pin/?username=SBRG&bg_color=00000000&hide_border=true&count_private=true&repo=lifelike&theme=dark#gh-dark-mode-only)
+![Anurag's GitHub stats-Light](https://github-readme-stats.vercel.app/api/pin/?username=SBRG&bg_color=00000000&hide_border=true&count_private=true&repo=lifelike#gh-light-mode-only)
 
 <!-- Does not work in firefox--><!--mixin variable-picture(href, options={})--><!--    picture--><!--        each media_kv in Object.entries(attributes['prefers-color-scheme'] || {})--><!--            source(--><!--                media=`(prefers-color-scheme: ${media_kv[0]})`--><!--                srcset!=href + object_to_query(merge(options, media_kv[1]))--><!--            )--><!--        img(--><!--            src!=href + object_to_query(options)--><!--        )&attributes(ommit(attributes, 'prefers-color-scheme'))-->
 
