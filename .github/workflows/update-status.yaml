@@ -13,8 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-        version: lts/*
-        cache: 'yarn'
+        with:
+          version: lts/*
+          cache: 'yarn'
       - name: Install pug
         run: yarn ci
       - name: Compile README
