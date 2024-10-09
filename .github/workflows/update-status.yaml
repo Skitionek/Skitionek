@@ -11,14 +11,17 @@ jobs:
     name: Update Readme with Metrics
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
         with:
           version: lts/*
           cache: 'yarn'
+          
       - name: Install pug
-        run: yarn ci
+        run: yarn install --immutable --immutable-cache --check-cache
+
       - name: Compile README
         run: yarn pug templates/README.pug -E md -o .
-      - uses: stefanzweifel/git-auto-commit-action@v4
 
+      - uses: stefanzweifel/git-auto-commit-action@v5
