@@ -15,13 +15,13 @@ Copenhagen, Denmark
 
 ## **Summary**
 
-Senior Software Engineer and emerging Software Architect with broad experience designing, implementing data‑intensive, cloud‑native, and on‑premise systems. My background in both advanced engineering and scientific computing allows me to bridge research, infrastructure, and software architecture.
+Senior Software Engineer and emerging Software Architect with broad experience designing, implementing data-intensive, cloud-native, and on-premise systems. My background in both advanced engineering and scientific computing allows me to bridge research, infrastructure, and software architecture.
 
 I specialize in shaping system architecture, establishing technical direction, and delivering resilient platforms that support complex dataflows, with long‑term maintainability in mind. I drive initiatives around Kubernetes, modern backend service patterns, observability, and structured data management.
 
 ## **Core Strengths**
 
-- Full‑stack development (TypeScript, key JS Frameworks, Python, Flask)
+- Full-stack development (TypeScript, key JS Frameworks, Python, Flask)
 - Data management & provenance (DataLakes, RDBMS, document and graph DBs)
 - Cloud platforms (Azure, GCP, DigitalOcean) & Kubernetes as well as on premise solutions
 - DevOps, CI/CD automation, code quality assurance
@@ -34,13 +34,13 @@ I specialize in shaping system architecture, establishing technical direction, a
 
 #### *Senior Software Engineer*
 
-**2025 – Present | Copenhagen, Denmark** Design and implementating solutions enabling uniform data storage and access management across the organization.
+**2025 – Present | Copenhagen, Denmark** Design and implementing solutions enabling uniform data storage and access management across the organization.
 
-- Full‑stack ownership: Vue.js + TypeScript, Python + FastAPI.
-- Architect secure and scalable data‑management and provenance framework.
-- Managed in cloud and on‑premise deployments.
+- Full-stack ownership: Vue.js + TypeScript, Python + FastAPI.
+- Architect secure and scalable data-management and provenance framework.
+- Managed in cloud and on-premise deployments.
 - Implementing hybrid/Azure applications.
-- Built automated CI/CD pipelines and enforced code‑quality checks.
+- Built automated CI/CD pipelines and enforced code-quality checks.
 - Deployed and operated Grafana for monitoring.
 
 #### *Senior Software Engineer*
@@ -48,16 +48,16 @@ I specialize in shaping system architecture, establishing technical direction, a
 **2022 – 2024 | Denmark**
 Lead developer on lifelike.bio — currently authoring \~75% of the codebase.
 
-- Full‑stack ownership: Angular + TypeScript, Python + Flask.
-- Implemented statistical‑enrichment and LLM‑based services.
+- Full-stack ownership: Angular + TypeScript, Python + Flask.
+- Implemented statistical‑enrichment and LLM-based services.
 - Integrated Postgres, Neo4j, ArangoDB, Redis, and ElasticSearch.
-- Managed on‑prem deployments and Kubernetes runtime environments.
+- Managed on-prem deployments and Kubernetes runtime environments.
 - Deployed and maintained Grafana dashboards.
 
 #### *Software Engineer (UCSD Relocation)*
 
 **2022 | San Diego, USA**
-Collaborated on‑site with UCSD team to extend lifelike.bio features.
+Collaborated on-site with UCSD team to extend lifelike.bio features.
 
 #### *Research Assistant*
 
@@ -68,25 +68,25 @@ Continued development of lifelike platform and internal scientific tools.
 
 **2016 – 2019 | Lyngby, Denmark**
 
-- Full‑stack ownership: React + JavaScript, Python + Flask.
+- Full-stack ownership: React + JavaScript, Python + Flask.
 - Led migration from Docker Compose to Kubernetes.
 - Contributed to infrastructure migration from DigitalOcean to Google Cloud.
-- Managed cloud and on‑prem environments.
+- Managed cloud and on-prem environments.
 
 ### **EMVcom** — *Electrical Engineer*
 
 **2018 – 2019 | Seoul, South Korea**
-Developed electrical systems, PCBs, and battery‑pack control for an EV project.
+Developed electrical systems, PCBs, and battery-pack control for an EV project.
 
 ### **Karlsruhe Institute of Technology (KIT)** — *Student Assistant*
 
 **2016**
-Worked on radiation‑induced soft‑error research in FPGA configuration.
+Worked on radiation‑induced soft-error research in FPGA configuration.
 
 ### **Platan** — *Intern*
 
 **2015 | Sopot, Poland**
-Built a web interface for an IP‑PBX telephone system.
+Built a web interface for an IP-PBX telephone system.
 
 ## **Education**
 
