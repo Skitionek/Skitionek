@@ -121,7 +121,3 @@ Built a web interface for an IP-PBX telephone system.
 
 - English — Professional Working Proficiency
 - Polish — Native
-
-
-## **Pinned Repositories**
-<p align="center"><a target="_blank" rel="noreferrer" href="https://github.com/SBRG/lifelike#gh-dark-mode-only"><img valgin="top" src="https://github-readme-stats.vercel.app/api/pin/?username=SBRG&bg_color=00000000&hide_border=true&count_private=true&title_color=2F80ED&repo=lifelike&theme=dark&text_color=c9d1d9#gh-dark-mode-only" alt="-Dark"/></a><a target="_blank" rel="noreferrer" href="https://github.com/SBRG/lifelike#gh-light-mode-only"><img valgin="top" src="https://github-readme-stats.vercel.app/api/pin/?username=SBRG&bg_color=00000000&hide_border=true&count_private=true&title_color=2F80ED&repo=lifelike&text_color=000000#gh-light-mode-only" alt="-Light"/></a><a target="_blank" rel="noreferrer" href="https://github.com/Skitionek/notify-microsoft-teams#gh-dark-mode-only"><img valgin="top" src="https://github-readme-stats.vercel.app/api/pin/?username=Skitionek&bg_color=00000000&hide_border=true&count_private=true&title_color=2F80ED&repo=notify-microsoft-teams&theme=dark&text_color=c9d1d9#gh-dark-mode-only" alt="-Dark"/></a><a target="_blank" rel="noreferrer" href="https://github.com/Skitionek/notify-microsoft-teams#gh-light-mode-only"><img valgin="top" src="https://github-readme-stats.vercel.app/api/pin/?username=Skitionek&bg_color=00000000&hide_border=true&count_private=true&title_color=2F80ED&repo=notify-microsoft-teams&text_color=000000#gh-light-mode-only" alt="-Light"/></a></p>
