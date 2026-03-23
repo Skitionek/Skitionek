@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build README preview",
+      "type": "shell",
+      "command": "npm",
+      "args": [
+        "run",
+        "preview:build"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "watch README preview",
+      "type": "shell",
+      "command": "npm",
+      "args": [
+        "run",
+        "preview:watch"
+      ],
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
