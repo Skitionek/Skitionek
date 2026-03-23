@@ -6,6 +6,8 @@
   "author": "Dominik Mariusz Maszczyk <dommas@biosustain.dtu.dk>",
   "license": "MIT",
   "scripts": {
+    "build": "pug templates/README.pug -E md -o .",
+    "build:check": "npm run build && git diff --exit-code -- README.md",
     "preview:build": "pug templates/README.pug --out .preview",
     "preview:watch": "pug templates/README.pug --out .preview --watch"
   },

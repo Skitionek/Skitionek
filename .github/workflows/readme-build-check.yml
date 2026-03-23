@@ -1,0 +1,67 @@
+name: README Build Check
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - templates/**
+      - package.json
+      - yarn.lock
+      - .github/workflows/readme-build-check.yml
+  pull_request:
+    paths:
+      - templates/**
+      - package.json
+      - yarn.lock
+      - .github/workflows/readme-build-check.yml
+  workflow_dispatch:
+
+jobs:
+  build-check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build and verify README
+        run: npm run build
+
+  auto-build-readme:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build README
+        run: npm run build
+
+      - name: Commit updated README
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'docs: auto-build README from pug template'
+          file_pattern: README.md
