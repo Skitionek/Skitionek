@@ -3,17 +3,15 @@
 <h3 align="center">GitHub Stats & Activity</h3><p align="center"><a target="_blank" rel="noreferrer" href="#gh-dark-mode-only"><img src="https://github-readme-streak-stats.herokuapp.com?user=Skitionek&hide_border=true&ring=2F80ED&currStreakLabel=2F80ED&background=00000000&theme=dark#gh-dark-mode-only" alt="-Dark"/></a><a target="_blank" rel="noreferrer" href="#gh-light-mode-only"><img src="https://github-readme-streak-stats.herokuapp.com?user=Skitionek&hide_border=true&ring=2F80ED&currStreakLabel=2F80ED&background=00000000#gh-light-mode-only" alt="-Light"/></a><br/><a target="_blank" rel="noreferrer" href="https://github.com/undefined#gh-dark-mode-only"><img valgin="top" src="https://github-readme-stats.vercel.app/api?username=Skitionek&bg_color=00000000&hide_border=true&count_private=true&title_color=2F80ED&custom_title=Total+contributions&include_all_commits=true&theme=dark&text_color=c9d1d9#gh-dark-mode-only" alt="-Dark"/></a><a target="_blank" rel="noreferrer" href="https://github.com/undefined#gh-light-mode-only"><img valgin="top" src="https://github-readme-stats.vercel.app/api?username=Skitionek&bg_color=00000000&hide_border=true&count_private=true&title_color=2F80ED&custom_title=Total+contributions&include_all_commits=true&text_color=000000#gh-light-mode-only" alt="-Light"/></a> <a target="_blank" rel="noreferrer" href="https://github.com/undefined#gh-dark-mode-only"><img valgin="top" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Skitionek&bg_color=00000000&hide_border=true&count_private=true&title_color=2F80ED&layout=compact&langs_count=10&theme=dark&text_color=c9d1d9#gh-dark-mode-only" alt="-Dark"/></a><a target="_blank" rel="noreferrer" href="https://github.com/undefined#gh-light-mode-only"><img valgin="top" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Skitionek&bg_color=00000000&hide_border=true&count_private=true&title_color=2F80ED&layout=compact&langs_count=10&text_color=000000#gh-light-mode-only" alt="-Light"/></a><br/></p>
 <h3 align="center">Open Source Contributions</h3>
 <!-- region github-pr-stats -->
+**Total PRs:** 214 | **Repos(≥1 Merged PR):** 17 | **Showing Repos:** 5
 
-      > **Total PRs:** 214 | **Repos(≥1 Merged PR):** 17 | **Showing Repos:** 5
-
-      | Repository | Stars | PR Numbers |
+| Repository | Stars | PR Numbers |
 | --- | ---: | --- |
-| [wkentaro/gdown](https://github.com/wkentaro/gdown) | 5167 ⭐ | wkentaro/gdown#246, wkentaro/gdown#244 |
-| [oxsecurity/megalinter](https://github.com/oxsecurity/megalinter) | 2435 ⭐ | oxsecurity/megalinter#3486 |
-| [actions/javascript-action](https://github.com/actions/javascript-action) | 1165 ⭐ | actions/javascript-action#418 |
-| [ansible-collections/azure](https://github.com/ansible-collections/azure) | 295 ⭐ | ansible-collections/azure#2083 |
-| [ckan/ckanext-scheming](https://github.com/ckan/ckanext-scheming) | 102 ⭐ | ckan/ckanext-scheming#440 |
-    
+| [wkentaro/gdown](https://github.com/wkentaro/gdown) | 5167 ⭐ | [#246](https://github.com/wkentaro/gdown/pull/246), [#244](https://github.com/wkentaro/gdown/pull/244) |
+| [oxsecurity/megalinter](https://github.com/oxsecurity/megalinter) | 2435 ⭐ | [#3486](https://github.com/oxsecurity/megalinter/pull/3486) |
+| [actions/javascript-action](https://github.com/actions/javascript-action) | 1165 ⭐ | [#418](https://github.com/actions/javascript-action/pull/418) |
+| [ansible-collections/azure](https://github.com/ansible-collections/azure) | 295 ⭐ | [#2083](https://github.com/ansible-collections/azure/pull/2083) |
+| [ckan/ckanext-scheming](https://github.com/ckan/ckanext-scheming) | 102 ⭐ | [#440](https://github.com/ckan/ckanext-scheming/pull/440) |
 <!-- endregion -->
 
 <h3 align="center">Contribution Graph</h3><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Skitionek/Skitionek/output/github-contribution-grid-snake-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Skitionek/Skitionek/output/github-contribution-grid-snake.svg"/><img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Skitionek/Skitionek/output/github-contribution-grid-snake.svg"/></picture></p>
