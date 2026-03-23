@@ -6,8 +6,6 @@
     var username = 'Skitionek'
 
 include utils.pug
-include variable-images/github-readme-stats.pug
-include variable-images/github-readme-streak-stats.pug
 
 h1(align="center") 
     | Hi, I'm Dominik
@@ -17,38 +15,7 @@ p(align="center")
     img(src="https://img.shields.io/github/followers/skitionek?label=Followers&style=for-the-badge&color=2F80ED" alt="followers")
     | 
     img(src="https://img.shields.io/github/stars/skitionek?label=Stars&style=for-the-badge&color=2F80ED" alt="stars")
-|
-|
-h3(align="center") Pinned Repositories
-p(align="center")
-    +github-readme-stats({
-        kind: 'pin',
-        username: 'SBRG',
-        repo: 'lifelike'
-    })
-    +github-readme-stats({
-        kind: 'pin',
-        username: 'Skitionek',
-        repo: 'notify-microsoft-teams'
-    })
 +hr
-h3(align="center") GitHub Stats & Activity
-p(align="center")
-    +github-readme-streak-stats
-    br
-    +github-readme-stats({
-        custom_title: 'Total contributions',
-        include_all_commits: true
-    })
-    |  
-    +github-readme-stats({
-        kind: 'top-langs',
-        layout: 'compact',
-        langs_count: 10
-    })
-    br
-|
-|
 h3(align="center") Open Source Contributions
 |
 div(align="center")

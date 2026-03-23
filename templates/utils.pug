@@ -5,9 +5,6 @@
     function merge(...objs) {
         return Object.assign({}, ...objs)
     }
-    function keys(obj) {
-        return Object.keys(obj)
-    }
     function ommit(obj, ...keys) {
         return Object.fromEntries(Object.entries(obj).filter(([key]) => !keys.includes(key)))
     }
@@ -28,24 +25,6 @@ mixin img()
             img&attributes(ommit(attributes, 'href', 'target', 'rel'))
     else
         img&attributes(attributes)
-
-mixin icon()
-    +img&attributes(merge(
-        {width: 40, align: 'center', height: 40},
-        ommit(attributes, 'href', 'target', 'rel')
-    ))
-
-// Does not work in firefox
-//mixin variable-picture(href, options={})
-//    picture
-//        each media_kv in Object.entries(attributes['prefers-color-scheme'] || {})
-//            source(
-//                media=`(prefers-color-scheme: ${media_kv[0]})`
-//                srcset!=href + object_to_query(merge(options, media_kv[1]))
-//            )
-//        img(
-//            src!=href + object_to_query(options)
-//        )&attributes(ommit(attributes, 'prefers-color-scheme'))
 
 mixin variable-picture(src, options={})
     if attributes['dark-mode'] || attributes['light-mode']
