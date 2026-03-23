@@ -1,0 +1,35 @@
+name: Update PR Stats
+
+on:
+  schedule:
+    - cron: '15 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-pr-stats:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update markdown region
+        id: update
+        uses: Skitionek/github-pr-stats@main
+        with:
+          username: Skitionek
+          file: README.md
+          commit_changes: true
+          commit_message: 'docs: refresh PR stats'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          mode: repo-aggregate
+          theme: dark
+          status: all
+          min_stars: 0
+          limit: 5
+          sort: stars_desc,merged_desc
+          stats: total_pr,repos_with_merged_pr,showing_repos
+          fields: repo,stars,pr_numbers
