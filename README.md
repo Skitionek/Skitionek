@@ -4,8 +4,8 @@
 **Total PRs:** 680 | **Repos(≥1 Merged PR):** 70 | **Showing Repos:** 5
 | Repository | Stars | PR Numbers |
 | --- | ---: | --- |
-| [wkentaro/gdown](https://github.com/wkentaro/gdown) | 5474 ⭐ | [#246](https://github.com/wkentaro/gdown/pull/246), [#244](https://github.com/wkentaro/gdown/pull/244) |
-| [oxsecurity/megalinter](https://github.com/oxsecurity/megalinter) | 2630 ⭐ | [#3486](https://github.com/oxsecurity/megalinter/pull/3486) |
+| [wkentaro/gdown](https://github.com/wkentaro/gdown) | 5475 ⭐ | [#246](https://github.com/wkentaro/gdown/pull/246), [#244](https://github.com/wkentaro/gdown/pull/244) |
+| [oxsecurity/megalinter](https://github.com/oxsecurity/megalinter) | 2632 ⭐ | [#3486](https://github.com/oxsecurity/megalinter/pull/3486) |
 | [nf-core/rnaseq](https://github.com/nf-core/rnaseq) | 1402 ⭐ | [#1983](https://github.com/nf-core/rnaseq/pull/1983), [#1982](https://github.com/nf-core/rnaseq/pull/1982) |
 | [actions/javascript-action](https://github.com/actions/javascript-action) | 1193 ⭐ | [#629](https://github.com/actions/javascript-action/pull/629), [#418](https://github.com/actions/javascript-action/pull/418) |
 | [timqian/gql-generator](https://github.com/timqian/gql-generator) | 388 ⭐ | [#82](https://github.com/timqian/gql-generator/pull/82) |
