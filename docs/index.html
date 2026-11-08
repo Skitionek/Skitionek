@@ -47,12 +47,41 @@ kbd{border:1px solid var(--line-strong);border-bottom-width:2px}
 .top nav{display:flex;flex-wrap:wrap;gap:6px 18px}
 .top nav a{color:var(--ink-2);text-decoration:none}
 .top nav a:hover{color:var(--link);text-decoration:underline}
-.hero{padding-block:clamp(40px,8vw,88px) 8px;max-width:900px}
-.hero h1{font:700 clamp(2.5rem,7.2vw,4.8rem)/1 var(--font-display);letter-spacing:-.025em;margin:0 0 14px;text-wrap:balance}
-.hero .role{font:500 13px var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin:0 0 26px}
-.hero .lead{font-size:clamp(1.08rem,2.2vw,1.3rem);line-height:1.55;max-width:64ch;margin:0 0 14px}
-.hero .lead + .lead{color:var(--ink-2);font-size:1rem}
-.index{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 0;padding:0;list-style:none}
+/* opening animation: Neuroform runs live next to the name; a still of its first frame shows until it draws */
+.hero{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;padding-block:clamp(20px,4vw,48px) 0}
+.hero-text{display:contents}
+.hero-title{order:1}.stage{order:2}.hero-lead{order:3}.index{order:4}
+.hero h1{font:700 clamp(2.5rem,6.4vw,4.4rem)/1 var(--font-display);letter-spacing:-.025em;margin:0 0 14px;text-wrap:balance}
+.hero .role{font:500 13px var(--font-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);margin:0;text-wrap:balance}
+.hero .lead{font-size:clamp(1.05rem,2vw,1.24rem);line-height:1.55;max-width:60ch;margin:0 0 14px}
+.hero .lead + .lead{color:var(--ink-2);font-size:1rem;margin:0}
+.stage{margin:0}
+.stage-frame{position:relative;aspect-ratio:5/4;overflow:hidden;-webkit-mask-image:radial-gradient(closest-side,#000 72%,transparent 100%);mask-image:radial-gradient(closest-side,#000 72%,transparent 100%)}
+.stage-frame .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.2);transition:opacity 1s ease .15s}
+.stage-frame .poster-dark{display:none}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .poster-light{display:none}
+  :root:not([data-theme="light"]) .poster-dark{display:block}
+}
+:root[data-theme="dark"] .poster-light{display:none}
+:root[data-theme="dark"] .poster-dark{display:block}
+.stage-frame neuro-form{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transform:scale(1.2);transition:opacity 1s ease;outline:none}
+.stage-frame neuro-form canvas{touch-action:pan-y}
+.stage.is-live neuro-form{opacity:1}
+.stage.is-live .poster{opacity:0}
+.stage-play{position:absolute;left:50%;bottom:22%;transform:translateX(-50%);padding:8px 18px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);font:500 13.5px var(--font-body);cursor:pointer}
+.stage-play:hover{border-color:var(--link);color:var(--link)}
+.stage figcaption{margin-top:8px;font:400 12px/1.5 var(--font-mono);color:var(--ink-2);letter-spacing:.01em}
+.hint-coarse{display:none}
+@media (pointer:coarse){.hint-fine{display:none}.hint-coarse{display:inline}}
+.js-open [data-reveal]{opacity:0;transform:translateY(12px)}
+.js-open.is-open [data-reveal]{opacity:1;transform:none;transition:opacity .8s ease var(--d,0s),transform .8s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+@media (min-width:960px){
+  .hero{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:40px;align-items:center}
+  .hero-text{display:grid;gap:26px;align-content:center}
+  .stage{order:0}
+}
+.index{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 0;padding:0;list-style:none}
 .index a{display:inline-flex;align-items:center;gap:9px;padding:8px 14px 8px 12px;border:1px solid var(--line-strong);border-radius:999px;color:var(--ink);text-decoration:none;font:500 13.5px var(--font-body);background:var(--surface)}
 .index a:hover{border-color:var(--branch);}
 .index i{width:10px;height:10px;border-radius:50%;background:var(--branch);flex:none}
@@ -143,15 +172,25 @@ footer p{margin:0}
 </style>
 </head>
 <body>
+<script>(function(){var m=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;if(!m)document.documentElement.classList.add("js-open");})();</script>
 <div class="wrap">
 <div class="top"><span class="handle">github.com/Skitionek</span>
 <nav aria-label="Profiles"><a href="https://github.com/Skitionek">GitHub</a><a href="https://www.linkedin.com/in/dominik-maszczyk/">LinkedIn</a><a href="https://skitionek.github.io/Curriculim-Vitae/">CV</a></nav></div>
-<header class="hero">
-<h1>Dominik Maszczyk</h1>
-<p class="role">Senior Software Engineer · data platforms for biology · Copenhagen</p>
-<p class="lead">These are the 21 public repositories I maintain: a query layer across life-science databases, a knowledge-graph workbench, tooling for Nextflow pipelines, apps that run in the browser, cloud libraries and the automation that keeps them tidy.</p>
-<p class="lead">Nothing here needs to be installed to see what it does. Clips are recordings of the real projects, and diagrams cover the ones that need a full stack.</p>
-<ul class="index" aria-label="Sections"><li><a href="#data" style="--branch:var(--b1)"><i></i>Data platforms and bioinformatics <span>5</span></a></li><li><a href="#browser" style="--branch:var(--b2)"><i></i>In the browser <span>4</span></a></li><li><a href="#cloud" style="--branch:var(--b3)"><i></i>Cloud storage and data libraries <span>4</span></a></li><li><a href="#automation" style="--branch:var(--b4)"><i></i>Automation and developer tooling <span>6</span></a></li><li><a href="#other" style="--branch:var(--b5)"><i></i>Hardware and documents <span>2</span></a></li></ul>
+<header class="hero" id="hero">
+<div class="hero-text">
+<div class="hero-title"><h1 data-reveal>Dominik Maszczyk</h1><p class="role" data-reveal style="--d:.12s">Senior Software Engineer · data platforms for biology · Copenhagen</p></div>
+<div class="hero-lead" data-reveal style="--d:.24s"><p class="lead">These are the 21 public repositories I maintain: a query layer across life-science databases, a knowledge-graph workbench, tooling for Nextflow pipelines, apps that run in the browser, cloud libraries and the automation that keeps them tidy.</p>
+<p class="lead">Nothing here needs to be installed to see what it does. Clips are recordings of the real projects, and diagrams cover the ones that need a full stack.</p></div>
+<ul class="index" aria-label="Sections" data-reveal style="--d:.36s"><li><a href="#data" style="--branch:var(--b1)"><i></i>Data platforms and bioinformatics <span>5</span></a></li><li><a href="#browser" style="--branch:var(--b2)"><i></i>In the browser <span>4</span></a></li><li><a href="#cloud" style="--branch:var(--b3)"><i></i>Cloud storage and data libraries <span>4</span></a></li><li><a href="#automation" style="--branch:var(--b4)"><i></i>Automation and developer tooling <span>6</span></a></li><li><a href="#other" style="--branch:var(--b5)"><i></i>Hardware and documents <span>2</span></a></li></ul>
+</div>
+<figure class="stage" id="stage">
+<div class="stage-frame" role="img" aria-label="A brain-shaped cloud of connected points. Waves of activation spread through it from the nodes that fire.">
+<img class="poster poster-light" src="media/neuroform-hero-light.jpg" alt="" width="1250" height="1000" loading="lazy" decoding="async">
+<img class="poster poster-dark" src="media/neuroform-hero-dark.jpg" alt="" width="1250" height="1000" loading="lazy" decoding="async">
+<button class="stage-play" type="button" hidden>Play animation</button>
+</div>
+<figcaption><span class="hint-fine">Live: click the brain to fire a node, drag to orbit.</span><span class="hint-coarse">Live: tap the brain to fire a node.</span> This is <a href="#neuroform">Neuroform</a>, one of the projects below.</figcaption>
+</figure>
 </header>
 <section class="branch" id="data" style="--branch:var(--b1)" aria-labelledby="data-h">
   <header class="branch-head"><span class="branch-label">data-platforms</span><h2 id="data-h">Data platforms and bioinformatics</h2><p>Systems that connect many data sources, and the tooling around Nextflow pipelines.</p></header>
@@ -235,7 +274,7 @@ nextflow run . --path /absolute/path</code></pre><figcaption>Usage from the READ
 </article>
 </section><section class="branch" id="browser" style="--branch:var(--b2)" aria-labelledby="browser-h">
   <header class="branch-head"><span class="branch-label">in-the-browser</span><h2 id="browser-h">In the browser</h2><p>Interactive projects that run on GitHub Pages.</p></header>
-  <article class="commit">
+  <article class="commit" id="neuroform">
   <div class="head">
     <p class="meta"><span class="meta-k">last push</span><time datetime="2026-10-08">2026-10-08</time><span>TypeScript</span></p>
     <h3><a href="https://github.com/Skitionek/Neuroform">Neuroform</a></h3>
@@ -243,7 +282,7 @@ nextflow run . --path /absolute/path</code></pre><figcaption>Usage from the READ
   </div>
   
   <div class="rest">
-    <ul class="facts"><li>Signals travel along connections at a finite speed and charge what they reach. Whatever crosses its threshold fires in turn.</li><li>Click a node to fire it, drag to orbit, scroll to zoom, <kbd>space</kbd> fires a random node, <kbd>r</kbd> quiets the network.</li><li>Ships as a <code>&lt;neuro-form&gt;</code> web component. Every setting is an attribute, and it installs straight from GitHub.</li><li>GitHub Pages publishes the site and a live preview of every open pull request.</li></ul>
+    <ul class="facts"><li>The animation at the top of this page is this component running live. Signals travel along connections at a finite speed and charge what they reach; whatever crosses its threshold fires in turn.</li><li>Click a node to fire it, drag to orbit, scroll to zoom, <kbd>space</kbd> fires a random node, <kbd>r</kbd> quiets the network.</li><li>Ships as a <code>&lt;neuro-form&gt;</code> web component. Every setting is an attribute, and it installs straight from GitHub.</li><li>GitHub Pages publishes the site and a live preview of every open pull request.</li></ul>
     
     <ul class="stack" aria-label="Technology"><li>TypeScript</li><li>three.js</li><li>Vite</li><li>Web Components</li></ul>
     <p class="links"><a class="btn" href="https://github.com/Skitionek/Neuroform">Repository</a><a class="btn" href="https://skitionek.github.io/Neuroform/">Live site</a></p>
@@ -264,28 +303,34 @@ nextflow run . --path /absolute/path</code></pre><figcaption>Usage from the READ
     <ul class="stack" aria-label="Technology"><li>WebAssembly</li><li>Emscripten</li><li>LibreOffice</li><li>PWA</li><li>JavaScript</li></ul>
     <p class="links"><a class="btn" href="https://github.com/Skitionek/serverless-office-converter">Repository</a><a class="btn" href="https://skitionek.github.io/serverless-office-converter/">Live site</a></p>
   </div>
-</article><article class="commit" id="route-with-dynamic-outlets">
+</article><article class="commit has-visual" id="route-with-dynamic-outlets">
   <div class="head">
     <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-06">2026-11-06</time><span>TypeScript</span><span>MIT</span></p>
     <h3><a href="https://github.com/Skitionek/route-with-dynamic-outlets">route-with-dynamic-outlets</a></h3>
     <p class="sum">An Angular library for URL-driven panel and tab layouts in which every panel is a real route.</p>
   </div>
-  
+  <figure class="visual clip">
+  <div class="frame"><video muted loop playsinline controls preload="none" data-auto poster="media/dynamic-outlets-poster.jpg" aria-label="Panels opening side by side while the URL changes"><source src="media/dynamic-outlets.mp4" type="video/mp4"></video></div>
+  <figcaption><span class="pill">28 s clip</span>Recorded in a small Angular 22 harness app that uses the published package and the real Angular Router. The panel styling is a demo skin; the URL strip at the top reads the real location.</figcaption>
+</figure>
   <div class="rest">
     <ul class="facts"><li>Registers named router outlets when a route matches, so lazy loading, guards and nested routes keep working inside panels.</li><li>The layout lives in the URL: it can be bookmarked, shared and restored with back and forward.</li><li>Needs <code>@angular/router</code> 9 or newer; CI runs against Angular 20, 21 and 22.</li><li>Published to npm as <code>@skitionek/route-with-dynamic-outlets</code>. A proof of concept for a router-native approach, used by Mycelium.</li></ul>
     
     <ul class="stack" aria-label="Technology"><li>Angular</li><li>TypeScript</li><li>RxJS</li><li>Jest</li><li>semantic-release</li></ul>
-    <p class="links"><a class="btn" href="https://github.com/Skitionek/route-with-dynamic-outlets">Repository</a><a class="btn" href="https://skitionek.github.io/route-with-dynamic-outlets/">Live demo</a></p>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/route-with-dynamic-outlets">Repository</a><a class="btn" href="https://skitionek.github.io/route-with-dynamic-outlets/">Demo page</a></p>
   </div>
-</article><article class="commit">
+</article><article class="commit has-visual">
   <div class="head">
     <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-06">2026-11-06</time><span>JavaScript</span></p>
     <h3><a href="https://github.com/Skitionek/DataVirtualisation">DataVirtualisation</a></h3>
-    <p class="sum">An AngularJS app with interactive Plotly maps of process capacity across the USA and a searchable selector.</p>
+    <p class="sum">An AngularJS app with an interactive Plotly map of process capacity across the USA and a searchable chemical selector.</p>
   </div>
-  
+  <figure class="visual clip">
+  <div class="frame"><video muted loop playsinline controls preload="none" data-auto poster="media/data-virtualisation-poster.jpg" aria-label="DataVirtualisation: filtering a process selector and exploring the map"><source src="media/data-virtualisation.mp4" type="video/mp4"></video></div>
+  <figcaption><span class="pill">26 s clip</span>The live site, after a first load and click that were not recorded: hover a site for its processes, zoom and pan, then search the 344-entry chemical list. The selector does not filter the map yet.</figcaption>
+</figure>
   <div class="rest">
-    <ul class="facts"><li>Scatter-geo maps rendered with Plotly.js, linked to a filterable multi-select built with Angular Material.</li><li>Follows John Papa’s AngularJS style guide: named functions, IIFE modules, <code>controllerAs</code>.</li><li>Grunt workflow with live reload and JSHint, Karma and Jasmine unit tests.</li></ul>
+    <ul class="facts"><li>Plots 205 process sites on a USA map with Plotly.js. Marker area shows capacity, and the tooltip lists the processes at each site.</li><li>A searchable multi-select over 344 chemical and process entries, built with Angular Material. It does not filter the map yet; the project is a work in progress.</li><li>Follows John Papa’s AngularJS style guide: named functions, IIFE modules, <code>controllerAs</code>.</li><li>Grunt workflow with live reload and JSHint, Karma and Jasmine unit tests.</li></ul>
     
     <ul class="stack" aria-label="Technology"><li>AngularJS 1.x</li><li>Angular Material</li><li>Plotly.js</li><li>D3</li><li>Grunt</li></ul>
     <p class="links"><a class="btn" href="https://github.com/Skitionek/DataVirtualisation">Repository</a><a class="btn" href="https://skitionek.github.io/DataVirtualisation/">Live site</a></p>
@@ -476,11 +521,80 @@ kill  port-forward  python  self_check  update</code></pre><figcaption>Autocompl
 <footer>
 <h2>About this page</h2>
 <p>Each entry is dated by the repository’s last push, as reported by GitHub on 2026-11-08. Twelve other public repositories are archived and not listed.</p>
+<p>The opening animation is <a href="#neuroform">Neuroform</a> running live, from a build kept in <code>docs/neuroform</code>. Visitors who prefer reduced motion, save data or have no WebGL see a still instead, and slow machines step down to fewer nodes.</p>
 <p>Browser clips are screen recordings of the live GitHub Pages sites or local builds, with a pointer and captions added. Terminal clips run the real command and replay its output. The Mozg clip comes from that repository.</p>
 <p>I also send pull requests to other open-source projects, for example gdown, MegaLinter, nf-core/rnaseq and actions/javascript-action. They are summarised on my <a href="https://github.com/Skitionek">GitHub profile</a>.</p>
 </footer>
 </div>
 <script>
+(function(){
+  var root=document.documentElement, stage=document.getElementById('stage');
+  if(!stage) return;
+  var frame=stage.querySelector('.stage-frame'), btn=stage.querySelector('.stage-play');
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var saveData=navigator.connection&&navigator.connection.saveData;
+  var opened=false, el=null, inView=true, step=0, slow=0;
+
+  function open(){ if(opened) return; opened=true; root.classList.add('is-open'); }
+  setTimeout(open,5000);                     // the text never stays hidden
+
+  function webgl(){ try{ var c=document.createElement('canvas'); return !!(c.getContext('webgl2')||c.getContext('webgl')); }catch(e){ return false; } }
+  function themeName(){
+    var t=root.getAttribute('data-theme'); if(t==='dark'||t==='light') return t;
+    return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  }
+  function bgHex(){
+    var m=(getComputedStyle(document.body).backgroundColor.match(/\d+/g)||[]).slice(0,3);
+    return m.map(function(n){ return ('0'+(+n).toString(16)).slice(-2); }).join('');
+  }
+  function sync(){ if(!el) return; el.setAttribute('theme',themeName()); el.setAttribute('background',bgHex()); }
+  if(window.MutationObserver) new MutationObserver(sync).observe(root,{attributes:true,attributeFilter:['data-theme']});
+  if(window.matchMedia){ var mq=matchMedia('(prefers-color-scheme: dark)'); if(mq.addEventListener) mq.addEventListener('change',sync); else if(mq.addListener) mq.addListener(sync); }
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){ inView=es[0].isIntersecting; }).observe(stage);
+
+  // scrolling over the brain must scroll the page, not zoom the brain
+  stage.addEventListener('wheel',function(e){ e.stopImmediatePropagation(); },{capture:true,passive:true});
+
+  function fire(){ try{ if(el&&el.stimulate) el.stimulate(); }catch(e){} }
+  function ambient(){
+    setTimeout(function(){ if(!el) return; if(!document.hidden&&inView) fire(); ambient(); },4200+Math.random()*3200);
+  }
+  function opening(){ [700,2000,3600].forEach(function(t){ setTimeout(fire,t); }); setTimeout(ambient,4200); }
+
+  // step down on slow machines, then settle on the still
+  function settle(){ stage.classList.remove('is-live'); if(el){ el.remove(); el=null; } open(); }
+  function onStats(e){
+    var s=e.detail; if(!s||s.building||!s.fps) return;
+    slow = s.fps<12 ? slow+1 : 0;
+    if(slow>=10){
+      slow=0; step++;
+      if(step===1) el.setAttribute('nodes','30000');
+      else if(step===2) el.setAttribute('neurons','0');
+      else settle();
+    }
+  }
+
+  function boot(){
+    if(el) return;
+    if(!webgl()){ open(); return; }
+    if(btn) btn.hidden=true;
+    import('./neuroform/neuroform.standalone.js').then(function(){
+      var small=window.matchMedia&&matchMedia('(max-width: 700px), (pointer: coarse)').matches;
+      el=document.createElement('neuro-form');
+      el.setAttribute('tabindex','-1'); el.setAttribute('keyboard','none');
+      if(small) el.setAttribute('preset','lite'); else el.setAttribute('nodes','70000');
+      sync();
+      el.addEventListener('firstrender',function(){ stage.classList.add('is-live'); open(); opening(); },{once:true});
+      el.addEventListener('error',settle);
+      el.addEventListener('stats',onStats);
+      frame.appendChild(el);
+    }).catch(open);
+  }
+
+  if(calm||saveData){ open(); if(btn){ btn.hidden=false; btn.addEventListener('click',function(){ boot(); }); } }
+  else boot();
+})();
+
 (function(){
   var vids=[].slice.call(document.querySelectorAll('video[data-auto]'));
   vids.forEach(function(v){
