@@ -192,3 +192,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+
+# Output of scripts/build-site.sh
+_site/
