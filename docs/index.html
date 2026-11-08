@@ -521,7 +521,7 @@ kill  port-forward  python  self_check  update</code></pre><figcaption>Autocompl
 <footer>
 <h2>About this page</h2>
 <p>Each entry is dated by the repository’s last push, as reported by GitHub on 2026-11-08. Twelve other public repositories are archived and not listed.</p>
-<p>The opening animation is <a href="#neuroform">Neuroform</a> running live, from a build kept in <code>docs/neuroform</code>. Visitors who prefer reduced motion, save data or have no WebGL see a still instead, and slow machines step down to fewer nodes.</p>
+<p>The opening animation is <a href="#neuroform">Neuroform</a> running live, from a build kept in <code>docs/neuroform</code>. Visitors who prefer reduced motion, save data or have no WebGL see a still instead, and slow machines drop the cell rendering, then use fewer nodes, before settling on the still.</p>
 <p>Browser clips are screen recordings of the live GitHub Pages sites or local builds, with a pointer and captions added. Terminal clips run the real command and replay its output. The Mozg clip comes from that repository.</p>
 <p>I also send pull requests to other open-source projects, for example gdown, MegaLinter, nf-core/rnaseq and actions/javascript-action. They are summarised on my <a href="https://github.com/Skitionek">GitHub profile</a>.</p>
 </footer>
@@ -561,18 +561,31 @@ kill  port-forward  python  self_check  update</code></pre><figcaption>Autocompl
   }
   function opening(){ [700,2000,3600].forEach(function(t){ setTimeout(fire,t); }); setTimeout(ambient,4200); }
 
-  // step down on slow machines, then settle on the still
+  // Slow machines: measure the page's own frame rate (the engine's readout is a per-frame average and lags),
+  // switch the cells off first, then use fewer nodes, then settle on the still.
   function settle(){ stage.classList.remove('is-live'); if(el){ el.remove(); el=null; } open(); }
-  function onStats(e){
-    var s=e.detail; if(!s||s.building||!s.fps) return;
-    slow = s.fps<12 ? slow+1 : 0;
-    if(slow>=10){
-      slow=0; step++;
-      if(step===1) el.setAttribute('nodes','30000');
-      else if(step===2) el.setAttribute('neurons','0');
-      else settle();
-    }
+  function stepDown(){
+    step++;
+    if(!el) return;
+    if(step===1) el.setAttribute('neurons','0');
+    else if(step===2) el.setAttribute('nodes','25000');
+    else settle();
   }
+  var building=false, frames=0, t0=0, low=0;
+  function watch(t){
+    if(!el) return;
+    if(document.hidden||!inView||!stage.classList.contains('is-live')){ frames=0; t0=0; low=0; }
+    else {
+      frames++; if(!t0) t0=t;
+      if(t-t0>=1000){
+        var rate=frames*1000/(t-t0); frames=0; t0=t;
+        if(!building && rate<10) low++; else if(rate>=14) low=0;
+        if(low>=3){ low=0; stepDown(); }
+      }
+    }
+    requestAnimationFrame(watch);
+  }
+  function onStats(e){ building=!!(e.detail&&e.detail.building); }
 
   function boot(){
     if(el) return;
@@ -584,7 +597,7 @@ kill  port-forward  python  self_check  update</code></pre><figcaption>Autocompl
       el.setAttribute('tabindex','-1'); el.setAttribute('keyboard','none');
       if(small) el.setAttribute('preset','lite'); else el.setAttribute('nodes','70000');
       sync();
-      el.addEventListener('firstrender',function(){ stage.classList.add('is-live'); open(); opening(); },{once:true});
+      el.addEventListener('firstrender',function(){ stage.classList.add('is-live'); open(); opening(); requestAnimationFrame(watch); },{once:true});
       el.addEventListener('error',settle);
       el.addEventListener('stats',onStats);
       frame.appendChild(el);
