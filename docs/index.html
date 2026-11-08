@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Dominik Maszczyk Portfolio</title>
+<meta name="description" content="The 21 public repositories Dominik Maszczyk maintains: data platforms for biology, Nextflow tooling, browser apps, cloud libraries and automation, with short demos.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
+<style>
+/* Concept: the page is a git history. Each section is a branch with a coloured rail, each repository is a commit on it, dated by when the project started. */
+:root{
+  --bg:#F3F5F9; --surface:#FFFFFF; --surface-2:#E8ECF4; --ink:#0F1A2B; --ink-2:#47566D; --line:#D3DAE6; --line-strong:#B4BFD1;
+  --accent:#2F80ED; --link:#1B62C9; --focus:#2F80ED;
+  --b1:#1FA463; --b2:#E8710A; --b3:#0A74B5; --b4:#D8323F; --b5:#8E4EAE;
+  --font-display:'Bricolage Grotesque','IBM Plex Sans',system-ui,sans-serif;
+  --font-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --rail-pad:36px; --rail-x:10px; --dot:15px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A101A; --surface:#111A29; --surface-2:#172338; --ink:#E8EEF7; --ink-2:#A2B0C6; --line:#22304A; --line-strong:#34466A;
+    --accent:#4A93F2; --link:#86B8FF; --focus:#86B8FF;
+    --b1:#35C47E; --b2:#FF9440; --b3:#44A5E0; --b4:#F2616D; --b5:#BA85D6; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A101A; --surface:#111A29; --surface-2:#172338; --ink:#E8EEF7; --ink-2:#A2B0C6; --line:#22304A; --line-strong:#34466A;
+  --accent:#4A93F2; --link:#86B8FF; --focus:#86B8FF;
+  --b1:#35C47E; --b2:#FF9440; --b3:#44A5E0; --b4:#F2616D; --b5:#BA85D6; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--font-body);-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+code,kbd{font-family:var(--font-mono);font-size:.88em;background:var(--surface-2);padding:.08em .38em;border-radius:4px}
+kbd{border:1px solid var(--line-strong);border-bottom-width:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;font:500 13px var(--font-mono);letter-spacing:.04em}
+.top .handle{color:var(--ink)}
+.top nav{display:flex;flex-wrap:wrap;gap:6px 18px}
+.top nav a{color:var(--ink-2);text-decoration:none}
+.top nav a:hover{color:var(--link);text-decoration:underline}
+/* opening animation: Neuroform runs live next to the name; a still of its first frame shows until it draws */
+.hero{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;padding-block:clamp(20px,4vw,48px) 0}
+.hero-text{display:contents}
+.hero-title{order:1}.stage{order:2}.hero-lead{order:3}.index{order:4}
+.hero h1{font:700 clamp(2.5rem,6.4vw,4.4rem)/1 var(--font-display);letter-spacing:-.025em;margin:0 0 14px;text-wrap:balance}
+.hero .role{font:500 13px var(--font-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);margin:0;text-wrap:balance}
+.hero .lead{font-size:clamp(1.05rem,2vw,1.24rem);line-height:1.55;max-width:60ch;margin:0 0 14px}
+.hero .lead + .lead{color:var(--ink-2);font-size:1rem;margin:0}
+.stage{margin:0}
+.stage-frame{position:relative;aspect-ratio:5/4;overflow:hidden;-webkit-mask-image:radial-gradient(closest-side,#000 72%,transparent 100%);mask-image:radial-gradient(closest-side,#000 72%,transparent 100%)}
+.stage-frame .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.2);transition:opacity 1s ease .15s}
+.stage-frame .poster-dark{display:none}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .poster-light{display:none}
+  :root:not([data-theme="light"]) .poster-dark{display:block}
+}
+:root[data-theme="dark"] .poster-light{display:none}
+:root[data-theme="dark"] .poster-dark{display:block}
+.stage-frame neuro-form{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transform:scale(1.2);transition:opacity 1s ease;outline:none}
+.stage-frame neuro-form canvas{touch-action:pan-y}
+.stage.is-live neuro-form{opacity:1}
+.stage.is-live .poster{opacity:0}
+.stage-play{position:absolute;left:50%;bottom:22%;transform:translateX(-50%);padding:8px 18px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);font:500 13.5px var(--font-body);cursor:pointer}
+.stage-play:hover{border-color:var(--link);color:var(--link)}
+.stage figcaption{margin-top:8px;font:400 12px/1.5 var(--font-mono);color:var(--ink-2);letter-spacing:.01em}
+.hint-coarse{display:none}
+@media (pointer:coarse){.hint-fine{display:none}.hint-coarse{display:inline}}
+.js-open [data-reveal]{opacity:0;transform:translateY(12px)}
+.js-open.is-open [data-reveal]{opacity:1;transform:none;transition:opacity .8s ease var(--d,0s),transform .8s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+@media (min-width:960px){
+  .hero{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:40px;align-items:center}
+  .hero-text{display:grid;gap:26px;align-content:center}
+  .stage{order:0}
+}
+.index{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 0;padding:0;list-style:none}
+.index a{display:inline-flex;align-items:center;gap:9px;padding:8px 14px 8px 12px;border:1px solid var(--line-strong);border-radius:999px;color:var(--ink);text-decoration:none;font:500 13.5px var(--font-body);background:var(--surface)}
+.index a:hover{border-color:var(--branch);}
+.index i{width:10px;height:10px;border-radius:50%;background:var(--branch);flex:none}
+.index span{font:500 12px var(--font-mono);color:var(--ink-2)}
+
+/* branches */
+.branch{position:relative;padding-left:var(--rail-pad);margin-top:clamp(56px,9vw,96px);scroll-margin-top:16px}
+.branch::before{content:"";position:absolute;left:calc(var(--rail-x) - 1.5px);top:20px;bottom:0;width:3px;border-radius:2px;background:var(--branch)}
+.branch::after{content:"";position:absolute;left:calc(var(--rail-x) - var(--dot)/2);top:6px;width:var(--dot);height:var(--dot);border-radius:50%;background:var(--branch)}
+.branch-head{padding-bottom:6px}
+.branch-label{display:inline-block;font:500 12.5px var(--font-mono);letter-spacing:.04em;padding:3px 11px;border-radius:6px;border:1px solid var(--branch);background:color-mix(in srgb,var(--branch) 16%,var(--surface));color:var(--ink)}
+.branch-head h2{font:650 clamp(1.7rem,4vw,2.5rem)/1.1 var(--font-display);letter-spacing:-.018em;margin:14px 0 8px;text-wrap:balance}
+.branch-head p{margin:0;color:var(--ink-2);max-width:62ch}
+
+.commit{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:18px 40px;padding-block:34px;border-bottom:1px solid var(--line)}
+.commit:last-child{border-bottom:0}
+.commit::before{content:"";position:absolute;left:calc(var(--rail-x) - var(--rail-pad) - var(--dot)/2);top:41px;width:var(--dot);height:var(--dot);border-radius:50%;background:var(--bg);border:3px solid var(--branch)}
+.commit > *{min-width:0}
+@media (min-width:960px){
+  .commit.has-visual{grid-template-columns:minmax(0,5fr) minmax(0,6fr);grid-template-rows:auto 1fr;align-items:start}
+  .commit.has-visual .head{grid-column:1;grid-row:1}
+  .commit.has-visual .rest{grid-column:1;grid-row:2}
+  .commit.has-visual .visual{grid-column:2;grid-row:1 / span 2;position:sticky;top:24px}
+}
+.meta{display:flex;flex-wrap:wrap;gap:2px 12px;margin:0 0 6px;font:400 12.5px var(--font-mono);color:var(--ink-2);letter-spacing:.02em}
+.meta .meta-k{text-transform:uppercase;letter-spacing:.08em;font-size:11px;opacity:.85}
+.meta time{font:600 15px var(--font-mono);color:var(--ink);letter-spacing:.02em}
+.meta span + span::before,.meta time + span::before{content:"·";margin-right:12px}
+.commit h3{font:650 clamp(1.5rem,3vw,2rem)/1.15 var(--font-display);letter-spacing:-.012em;margin:0 0 10px;overflow-wrap:anywhere}
+.commit h3 a{color:var(--ink);text-decoration:none}
+.commit h3 a::after{content:"\00a0↗";font:400 .55em var(--font-mono);color:var(--ink-2)}
+.commit h3 a:hover{color:var(--link)}
+.sum{font-size:1.06rem;line-height:1.5;margin:0;max-width:60ch}
+.facts{margin:0 0 16px;padding:0;list-style:none;display:grid;gap:9px;max-width:62ch}
+.facts li{position:relative;padding-left:20px;color:var(--ink-2);font-size:.96rem}
+.facts li::before{content:"";position:absolute;left:0;top:.72em;width:11px;height:2px;background:var(--branch);border-radius:2px}
+.facts a{color:var(--link)}
+.note{margin:0 0 14px;font-size:.88rem;color:var(--ink-2);max-width:62ch;padding:8px 12px;border-left:3px solid var(--line-strong);background:var(--surface-2);border-radius:0 6px 6px 0}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:0;list-style:none}
+.stack li{font:400 12px var(--font-mono);padding:2px 9px;border-radius:999px;border:1px solid var(--line-strong);color:var(--ink-2)}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+.btn{display:inline-block;padding:6px 14px;border-radius:8px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);text-decoration:none;font:500 13.5px var(--font-body)}
+.btn:hover{border-color:var(--link);color:var(--link)}
+
+/* visuals */
+.visual{margin:0}
+.frame{border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);overflow:hidden}
+.frame.pad{padding:18px}
+.clip .frame{aspect-ratio:16/9;background:#05080E;border-color:var(--line-strong)}
+.clip video{display:block;width:100%;height:100%;object-fit:contain;background:#05080E}
+.visual figcaption{margin-top:10px;font-size:.84rem;color:var(--ink-2);max-width:70ch}
+.pill{display:inline-block;margin-right:9px;padding:1px 8px;border-radius:999px;font:500 11.5px var(--font-mono);background:color-mix(in srgb,var(--branch) 18%,var(--surface));border:1px solid var(--branch);color:var(--ink);white-space:nowrap}
+pre.frame{margin:0;overflow-x:auto;background:var(--surface-2)}
+pre.frame code{background:none;padding:0;font-size:13px;line-height:1.65;color:var(--ink);white-space:pre}
+.arch{display:block;width:100%;height:auto;min-width:560px}
+.diagram .frame.pad{overflow-x:auto}
+.arch .b{fill:var(--surface);stroke:var(--line-strong);stroke-width:1.2}
+.arch .grp{fill:var(--surface-2);stroke:var(--line-strong);stroke-dasharray:4 4;stroke-width:1.2}
+.arch .t{fill:var(--ink);font:600 13.5px var(--font-body)}
+.arch .s{fill:var(--ink-2);font:400 11.5px var(--font-mono)}
+.arch .g{fill:var(--ink-2);font:500 11px var(--font-mono);letter-spacing:.12em}
+.arch .e{stroke:var(--branch);stroke-width:2.2;fill:none}
+.arch .head{fill:var(--branch)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px 20px;margin-bottom:16px}
+.stats b{display:block;font:700 clamp(1.9rem,3.6vw,2.6rem)/1 var(--font-display);letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.stats span{display:block;margin-top:6px;font-size:.84rem;color:var(--ink-2);line-height:1.4}
+.ops{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.ops li{font:400 12px var(--font-mono);padding:2px 9px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink)}
+.flows{display:grid;gap:14px}
+.flow{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:0 30px;width:min(100%,calc(var(--n) * 200px));margin:0;padding:0;list-style:none}
+.flow li{position:relative;display:flex;flex-direction:column;justify-content:center;padding:9px 12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface-2);overflow-wrap:anywhere}
+.flow li:not(:last-child)::after{content:"→";position:absolute;right:-24px;top:50%;transform:translateY(-52%);font:500 16px var(--font-mono);color:var(--branch)}
+.flow b{font:600 13.5px/1.3 var(--font-body);color:var(--ink)}
+.flow span{font:400 11.5px/1.4 var(--font-mono);color:var(--ink-2)}
+
+/* footer */
+footer{margin-top:clamp(64px,10vw,110px);padding-top:28px;border-top:1px solid var(--line);display:grid;gap:14px;color:var(--ink-2);font-size:.92rem;max-width:78ch}
+footer h2{font:650 1.15rem var(--font-display);color:var(--ink);margin:0}
+footer p{margin:0}
+
+@media (max-width:640px){
+  :root{--rail-pad:26px;--rail-x:7px;--dot:13px}
+  .commit::before{top:39px}
+  .wrap{padding-block:20px 48px}
+  .flow{grid-template-columns:minmax(0,1fr);gap:26px 0;width:100%}
+  .flow li:not(:last-child)::after{content:"↓";right:auto;left:16px;top:auto;bottom:-22px;transform:none}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<script>(function(){var m=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;if(!m)document.documentElement.classList.add("js-open");})();</script>
+<div class="wrap">
+<div class="top"><span class="handle">github.com/Skitionek</span>
+<nav aria-label="Profiles"><a href="https://github.com/Skitionek">GitHub</a><a href="https://www.linkedin.com/in/dominik-maszczyk/">LinkedIn</a><a href="https://skitionek.github.io/Curriculim-Vitae/">CV</a></nav></div>
+<header class="hero" id="hero">
+<div class="hero-text">
+<div class="hero-title"><h1 data-reveal>Dominik Maszczyk</h1><p class="role" data-reveal style="--d:.12s">Senior Software Engineer · data platforms for biology · Copenhagen</p></div>
+<div class="hero-lead" data-reveal style="--d:.24s"><p class="lead">These are the 21 public repositories I maintain: a query layer across life-science databases, a knowledge-graph workbench, tooling for Nextflow pipelines, apps that run in the browser, cloud libraries and the automation that keeps them tidy.</p>
+<p class="lead">Nothing here needs to be installed to see what it does. Clips are recordings of the real projects, and diagrams cover the ones that need a full stack.</p></div>
+<ul class="index" aria-label="Sections" data-reveal style="--d:.36s"><li><a href="#data" style="--branch:var(--b1)"><i></i>Data platforms and bioinformatics <span>5</span></a></li><li><a href="#browser" style="--branch:var(--b2)"><i></i>In the browser <span>4</span></a></li><li><a href="#cloud" style="--branch:var(--b3)"><i></i>Cloud storage and data libraries <span>4</span></a></li><li><a href="#automation" style="--branch:var(--b4)"><i></i>Automation and developer tooling <span>6</span></a></li><li><a href="#other" style="--branch:var(--b5)"><i></i>Hardware and documents <span>2</span></a></li></ul>
+</div>
+<figure class="stage" id="stage">
+<div class="stage-frame" role="img" aria-label="A brain-shaped cloud of connected points. Waves of activation spread through it from the nodes that fire.">
+<img class="poster poster-light" src="media/neuroform-hero-light.jpg" alt="" width="1250" height="1000" loading="lazy" decoding="async">
+<img class="poster poster-dark" src="media/neuroform-hero-dark.jpg" alt="" width="1250" height="1000" loading="lazy" decoding="async">
+<button class="stage-play" type="button" hidden>Play animation</button>
+</div>
+<figcaption><span class="hint-fine">Live: click the brain to fire a node, drag to orbit.</span><span class="hint-coarse">Live: tap the brain to fire a node.</span> This is <a href="#neuroform">Neuroform</a>, one of the projects below.</figcaption>
+</figure>
+</header>
+<section class="branch" id="data" style="--branch:var(--b1)" aria-labelledby="data-h">
+  <header class="branch-head"><span class="branch-label">data-platforms</span><h2 id="data-h">Data platforms and bioinformatics</h2><p>Systems that connect many data sources, and the tooling around Nextflow pipelines.</p></header>
+  <article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-03-30">2026-03</time><span>JavaScript</span></p>
+    <h3><a href="https://github.com/Skitionek/Mozg">Mozg</a></h3>
+    <p class="sum">One GraphQL endpoint that queries 47 public life-science databases live and joins their answers.</p>
+  </div>
+  <figure class="visual clip">
+  <div class="frame"><video muted loop playsinline controls preload="none" data-auto poster="media/mozg-demo-poster.jpg" aria-label="Mozg demo: a single GraphQL query answered from several life-science databases"><source src="media/mozg-demo.mp4" type="video/mp4"></video></div>
+  <figcaption><span class="pill">80 s clip</span>Recorded from the project’s own demo: one query across four databases, a join into Open Targets, then plain GraphiQL.</figcaption>
+</figure>
+  <div class="rest">
+    <ul class="facts"><li>Queries run against each source at request time. The README calls this “slow by design”: freshness and flexibility over speed.</li><li>A single request can join UniProt, PDBe, AlphaFold and Reactome, then follow an OBO key into Open Targets (see the clip).</li><li>Also connects PostgreSQL, SQLite, MySQL, Neo4j, ArangoDB and Elasticsearch, and ships a query builder that runs in the browser.</li><li>Every source’s example and relation is checked against the live APIs weekly. Helm charts deploy self-hosted databases that scale to zero (beta).</li></ul>
+    <p class="note">Status in its README: life-science sources, PostgreSQL and SQLite are stable; the other drivers are beta.</p>
+    <ul class="stack" aria-label="Technology"><li>Node.js</li><li>GraphQL</li><li>Helm</li><li>Kubernetes</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/Mozg">Repository</a><a class="btn" href="https://skitionek.github.io/Mozg/">Project site</a></p>
+  </div>
+</article><article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2022-07-25">2022-07</time><span>TypeScript</span></p>
+    <h3><a href="https://github.com/Skitionek/mycelium">mycelium</a></h3>
+    <p class="sum">A knowledge-graph workbench for biological data: add files, annotate them with domain entities, explore the graph.</p>
+  </div>
+  <figure class="visual diagram"><div class="frame pad"><svg class="arch" viewBox="0 0 720 330" role="img" aria-labelledby="arch-t arch-d"><title id="arch-t">Mycelium architecture</title><desc id="arch-d">A browser client calls core Python services, which depend on PostgreSQL, Neo4j, Elasticsearch, Redis, PDFParser and Sendgrid.</desc><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="head"/></marker></defs><text class="g" x="0" y="14">CLIENT</text><rect class="b" x="0" y="135" width="170" height="56" rx="6"/><text class="t" x="12" y="161.0">Frontend</text><text class="s" x="12" y="177.0">Angular SPA</text><path class="e" d="M172 163H258" marker-end="url(#ah)"/><text class="g" x="262" y="14">CORE SERVICES</text><rect class="grp" x="262" y="24" width="206" height="296" rx="10"/><rect class="b" x="276" y="40" width="178" height="56" rx="6"/><text class="t" x="288" y="66.0">Appserver</text><text class="s" x="288" y="82.0">Flask API</text><rect class="b" x="276" y="110" width="178" height="56" rx="6"/><text class="t" x="288" y="136.0">Statistical enrichment</text><text class="s" x="288" y="152.0">Flask service</text><rect class="b" x="276" y="180" width="178" height="56" rx="6"/><text class="t" x="288" y="206.0">Cache invalidator</text><text class="s" x="288" y="222.0">recurrent task runner</text><rect class="b" x="276" y="250" width="178" height="56" rx="6"/><text class="t" x="288" y="276.0">Graph data migrator</text><text class="s" x="288" y="292.0">Liquibase</text><path class="e" d="M470 163H556" marker-end="url(#ah)"/><text class="g" x="560" y="14">BACKING SERVICES</text><rect class="grp" x="560" y="24" width="160" height="296" rx="10"/><rect class="b" x="572" y="36" width="136" height="40" rx="6"/><text class="t" x="584" y="54.0">PostgreSQL</text><text class="s" x="584" y="70.0">relational data</text><rect class="b" x="572" y="82" width="136" height="40" rx="6"/><text class="t" x="584" y="100.0">Neo4j</text><text class="s" x="584" y="116.0">knowledge graph</text><rect class="b" x="572" y="128" width="136" height="40" rx="6"/><text class="t" x="584" y="146.0">Elasticsearch</text><text class="s" x="584" y="162.0">full-text search</text><rect class="b" x="572" y="174" width="136" height="40" rx="6"/><text class="t" x="584" y="192.0">Redis</text><text class="s" x="584" y="208.0">cache</text><rect class="b" x="572" y="220" width="136" height="40" rx="6"/><text class="t" x="584" y="238.0">PDFParser</text><text class="s" x="584" y="254.0">document parsing</text><rect class="b" x="572" y="266" width="136" height="40" rx="6"/><text class="t" x="584" y="284.0">Sendgrid</text><text class="s" x="584" y="300.0">email</text></svg></div><figcaption>No clip: the full stack needs four databases and several services. Services and datastores as listed in the README.</figcaption></figure>
+  <div class="rest">
+    <ul class="facts"><li>A fork of Lifelike (SBRG), modernised to Angular 22, Flask 3, d3 7 and Bootstrap 5, with the PDF viewer patched for CVE-2024-4367.</li><li>Built-in viewers for PDF, Office files, protein structures (Mol*) and code. Local folders open without uploading and are indexed in the background.</li><li>Visualisations: maps, enrichment tables, Sankey diagrams and a pathway browser.</li><li>Zero-config dev container and Codespaces, Playwright end-to-end tests, CI for tests, Docker publishing, CodeQL and Dependabot auto-merge. Panels use <a href="#route-with-dynamic-outlets">route-with-dynamic-outlets</a>.</li></ul>
+    <p class="note">Built on the open-source release of Lifelike, whose history begins in January 2022; this repository was created in July 2022. This project uses code provided by <a href="https://github.com/SBRG/lifelike">Lifelike.bio</a>.</p>
+    <ul class="stack" aria-label="Technology"><li>Angular</li><li>TypeScript</li><li>Flask</li><li>Neo4j</li><li>PostgreSQL</li><li>Elasticsearch</li><li>Redis</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/mycelium">Repository</a><a class="btn" href="https://github.com/codespaces/new/Skitionek/mycelium?quickstart=1&amp;devcontainer_path=.devcontainer%2Fdevcontainer.json">Open in Codespaces</a></p>
+  </div>
+</article><article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-03-06">2026-03</time><span>Java</span><span>MIT</span><span>★ 9</span></p>
+    <h3><a href="https://github.com/Skitionek/nf-mapper">nf-mapper</a></h3>
+    <p class="sum">Turns a Nextflow pipeline into a Mermaid git graph, straight from its <code>.nf</code> source.</p>
+  </div>
+  <figure class="visual clip">
+  <div class="frame"><video muted loop playsinline controls preload="none" data-auto poster="media/nf-mapper-poster.jpg" aria-label="nf-mapper turning a Nextflow workflow into a git graph"><source src="media/nf-mapper.mp4" type="video/mp4"></video></div>
+  <figcaption><span class="pill">33 s clip</span>Real run of the built JAR on the nf-core/fetchngs SRA workflow from the repo’s test fixtures; the diagram is the tool’s own Mermaid output.</figcaption>
+</figure>
+  <div class="rest">
+    <ul class="facts"><li>Parses DSL2 with Nextflow’s official AST library. Each process becomes a commit; the main chain stays on <code>main</code>, QC and parallel steps branch off. A second renderer turns if/else blocks into labelled branches.</li><li>A CLI (fat JAR), a Docker image and a GitHub Action. <code>--update</code> rewrites a diagram block inside an existing Markdown file, so docs stay in sync in CI.</li><li>Output pastes into GitHub Markdown, Notion or Confluence. Themes: nf-core colours or plain.</li><li>Tested against nf-core/fetchngs, nf-core/rnaseq modules and bigbio/quantms.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>Java 17</li><li>Maven</li><li>Mermaid</li><li>Nextflow</li><li>Docker</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/nf-mapper">Repository</a></p>
+  </div>
+</article><article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-10-15">2026-10</time><span>Python</span><span>GPL-3.0</span></p>
+    <h3><a href="https://github.com/Skitionek/nf-migrate">nf-migrate</a></h3>
+    <p class="sum">Applies nf-core template updates as a chain of small, idempotent migrations instead of one large git merge.</p>
+  </div>
+  <figure class="visual diagram"><div class="frame pad"><div class="stats">
+  <div><b>60</b><span>chained migrations<br>nf-core/tools 1.9 → 4.2.1</span></div>
+  <div><b>1,213</b><span>merged template updates replayed, from 129 pipelines</span></div>
+  <div><b>91.2%</b><span>of operations end where the maintainers put them</span></div>
+</div>
+<ul class="ops" aria-label="Operations a migration is made of"><li>Replace</li><li>RemoveText</li><li>RegexReplace</li><li>BumpVersion</li><li>YamlSet</li><li>YamlListItem</li><li>ReplaceFile</li><li>FirstOf</li><li>CreateFile</li><li>DeleteFile</li><li>NfCoreComponent</li><li>ManualStep</li></ul></div><figcaption>Numbers from the project’s README and docs/validation.md. No clip: the work happens in pull requests.</figcaption></figure>
+  <div class="rest">
+    <ul class="facts"><li>One migration per nf-core/tools release, made of operations such as Replace, YamlSet and BumpVersion. No LLM involved.</li><li>A GitHub Action resolves the template sync PRs opened by nf-core-bot and comments the manual steps that are left (for example <code>nf-core modules update</code>) as a checklist.</li><li>Matching tolerates what pipelines routinely change around template text: spacing, list indentation, resolved TODO notes.</li><li>Tuned against every merged template update of the nf-core pipelines list (figures from its validation notes).</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>Python 3.12</li><li>GitHub Action</li><li>nf-core</li><li>pytest</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/nf-migrate">Repository</a></p>
+  </div>
+</article><article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-08-06">2026-08</time><span>Nextflow</span></p>
+    <h3><a href="https://github.com/Skitionek/nf-tree">nf-tree</a></h3>
+    <p class="sum">A minimal Nextflow pipeline that prints the working directory as a tree, like the Linux <code>tree</code> command.</p>
+  </div>
+  <figure class="visual codefig"><pre class="frame pad"><code>nextflow run .
+nextflow run . --path /absolute/path</code></pre><figcaption>Usage from the README.</figcaption></figure>
+  <div class="rest">
+    <ul class="facts"></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>Nextflow</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/nf-tree">Repository</a></p>
+  </div>
+</article>
+</section><section class="branch" id="browser" style="--branch:var(--b2)" aria-labelledby="browser-h">
+  <header class="branch-head"><span class="branch-label">in-the-browser</span><h2 id="browser-h">In the browser</h2><p>Interactive projects that run on GitHub Pages.</p></header>
+  <article class="commit" id="neuroform">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-10-06">2026-10</time><span>TypeScript</span></p>
+    <h3><a href="https://github.com/Skitionek/Neuroform">Neuroform</a></h3>
+    <p class="sum">A brain-shaped cloud of points wired by synapses. Touch a node and a wave of activation spreads through the tissue.</p>
+  </div>
+  
+  <div class="rest">
+    <ul class="facts"><li>The animation at the top of this page is this component running live. Signals travel along connections at a finite speed and charge what they reach; whatever crosses its threshold fires in turn.</li><li>Click a node to fire it, drag to orbit, scroll to zoom, <kbd>space</kbd> fires a random node, <kbd>r</kbd> quiets the network.</li><li>Ships as a <code>&lt;neuro-form&gt;</code> web component. Every setting is an attribute, and it installs straight from GitHub.</li><li>GitHub Pages publishes the site and a live preview of every open pull request.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>TypeScript</li><li>three.js</li><li>Vite</li><li>Web Components</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/Neuroform">Repository</a><a class="btn" href="https://skitionek.github.io/Neuroform/">Live site</a></p>
+  </div>
+</article><article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-10-14">2026-10</time><span>JavaScript</span></p>
+    <h3><a href="https://github.com/Skitionek/serverless-office-converter">serverless-office-converter</a></h3>
+    <p class="sum">Converts Word, Excel, PowerPoint and OpenDocument files in the browser. LibreOffice runs as WebAssembly, so nothing is uploaded.</p>
+  </div>
+  <figure class="visual clip">
+  <div class="frame"><video muted loop playsinline controls preload="none" data-auto poster="media/office-converter-poster.jpg" aria-label="Serverless Office Converter converting a document in the browser"><source src="media/office-converter.mp4" type="video/mp4"></video></div>
+  <figcaption><span class="pill">33 s clip</span>Live site: a Word file, then a spreadsheet and a presentation converted after the network is cut. The online/offline badge is an overlay that follows the emulated network state; the times come from the page.</figcaption>
+</figure>
+  <div class="rest">
+    <ul class="facts"><li>Offers 460 input and output combinations, from DOCX, XLSX, PPTX, ODT, RTF and Markdown to PDF, PDF/A, Office, OpenDocument and image formats. The README reports that every one produces a valid file.</li><li>Works offline once loaded; the engine is a one-time download of about 28 MB that the browser caches. The README shows how to check in DevTools that no request carries a document.</li><li>Handles batches and whole folders. In Chrome and Edge it can save next to the originals and watch a folder for new files.</li><li>Plain static files on GitHub Pages, installable as a PWA. There is no server component.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>WebAssembly</li><li>Emscripten</li><li>LibreOffice</li><li>PWA</li><li>JavaScript</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/serverless-office-converter">Repository</a><a class="btn" href="https://skitionek.github.io/serverless-office-converter/">Live site</a></p>
+  </div>
+</article><article class="commit has-visual" id="route-with-dynamic-outlets">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2023-07-15">2023-07</time><span>TypeScript</span><span>MIT</span></p>
+    <h3><a href="https://github.com/Skitionek/route-with-dynamic-outlets">route-with-dynamic-outlets</a></h3>
+    <p class="sum">An Angular library for URL-driven panel and tab layouts in which every panel is a real route.</p>
+  </div>
+  <figure class="visual clip">
+  <div class="frame"><video muted loop playsinline controls preload="none" data-auto poster="media/dynamic-outlets-poster.jpg" aria-label="Panels opening side by side while the URL changes"><source src="media/dynamic-outlets.mp4" type="video/mp4"></video></div>
+  <figcaption><span class="pill">28 s clip</span>Recorded in a small Angular 22 harness app that uses the published package and the real Angular Router. The panel styling is a demo skin; the URL strip at the top reads the real location.</figcaption>
+</figure>
+  <div class="rest">
+    <ul class="facts"><li>Registers named router outlets when a route matches, so lazy loading, guards and nested routes keep working inside panels.</li><li>The layout lives in the URL: it can be bookmarked, shared and restored with back and forward.</li><li>Needs <code>@angular/router</code> 9 or newer; CI runs against Angular 20, 21 and 22.</li><li>Published to npm as <code>@skitionek/route-with-dynamic-outlets</code>. A proof of concept for a router-native approach, used by Mycelium.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>Angular</li><li>TypeScript</li><li>RxJS</li><li>Jest</li><li>semantic-release</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/route-with-dynamic-outlets">Repository</a><a class="btn" href="https://skitionek.github.io/route-with-dynamic-outlets/">Demo page</a></p>
+  </div>
+</article><article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2016-11-09">2016-11</time><span>JavaScript</span></p>
+    <h3><a href="https://github.com/Skitionek/DataVirtualisation">DataVirtualisation</a></h3>
+    <p class="sum">An AngularJS app with an interactive Plotly map of process capacity across the USA and a searchable chemical selector.</p>
+  </div>
+  <figure class="visual clip">
+  <div class="frame"><video muted loop playsinline controls preload="none" data-auto poster="media/data-virtualisation-poster.jpg" aria-label="DataVirtualisation: filtering a process selector and exploring the map"><source src="media/data-virtualisation.mp4" type="video/mp4"></video></div>
+  <figcaption><span class="pill">26 s clip</span>The live site, after a first load and click that were not recorded: hover a site for its processes, zoom and pan, then search the 344-entry chemical list. The selector does not filter the map yet.</figcaption>
+</figure>
+  <div class="rest">
+    <ul class="facts"><li>Plots 205 process sites on a USA map with Plotly.js. Marker area shows capacity, and the tooltip lists the processes at each site.</li><li>A searchable multi-select over 344 chemical and process entries, built with Angular Material. It does not filter the map yet; the project is a work in progress.</li><li>Follows John Papa’s AngularJS style guide: named functions, IIFE modules, <code>controllerAs</code>.</li><li>Grunt workflow with live reload and JSHint, Karma and Jasmine unit tests.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>AngularJS 1.x</li><li>Angular Material</li><li>Plotly.js</li><li>D3</li><li>Grunt</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/DataVirtualisation">Repository</a><a class="btn" href="https://skitionek.github.io/DataVirtualisation/">Live site</a></p>
+  </div>
+</article>
+</section><section class="branch" id="cloud" style="--branch:var(--b3)" aria-labelledby="cloud-h">
+  <header class="branch-head"><span class="branch-label">cloud-libraries</span><h2 id="cloud-h">Cloud storage and data libraries</h2><p>Small libraries and extensions for Azure, CKAN, ArangoDB and market data.</p></header>
+  <article class="commit">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-05-21">2026-05</time><span>Python</span></p>
+    <h3><a href="https://github.com/Skitionek/azure-data-lake-fs">azure-data-lake-fs</a></h3>
+    <p class="sum">A Python client for Azure Data Lake Storage Gen2 that works around the 64-record ACL limit.</p>
+  </div>
+  
+  <div class="rest">
+    <ul class="facts"><li>Named-user ACL entries are converted into lazily created permission groups, so access lists stay under 64 records.</li><li>ACL reads redact principal object IDs.</li><li>Uploads and downloads return SAS URL contexts, so file bytes do not pass through the library.</li><li>An optional Service Bus queue observer handles changes, and a Bicep template provisions storage, Service Bus and the Event Grid wiring.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>Python</li><li>Azure</li><li>Bicep</li><li>pytest</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/azure-data-lake-fs">Repository</a></p>
+  </div>
+</article><article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2025-09-29">2025-09</time><span>Python</span></p>
+    <h3><a href="https://github.com/Skitionek/ckanext-native-cloud-storage">ckanext-native-cloud-storage</a></h3>
+    <p class="sum">A CKAN extension that stores files in Azure Data Lake Storage Gen2 and publishes file events to Service Bus.</p>
+  </div>
+  <figure class="visual codefig"><pre class="frame pad"><code># ckan.ini
+ckan.plugins = ... native_cloud_storage
+ckanext.native_cloud_storage.azure.use_emulator = true
+ckanext.native_cloud_storage.azure.file_system_name = ckan-storage</code></pre><figcaption>Development configuration from the README.</figcaption></figure>
+  <div class="rest">
+    <ul class="facts"><li>SAS tokens for secure access, a migration tool for existing local files and an admin page for storage status.</li><li>Develop against the Azurite and Service Bus emulators with Docker Compose, no Azure account needed.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>CKAN 2.9+</li><li>Python 3.10+</li><li>Azure</li><li>Docker Compose</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/ckanext-native-cloud-storage">Repository</a></p>
+  </div>
+</article><article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2019-05-20">2019-05</time><span>JavaScript</span><span>MIT</span><span>★ 1</span></p>
+    <h3><a href="https://github.com/Skitionek/alpha-vantage-graphql-module">alpha-vantage-graphql-module</a></h3>
+    <p class="sum">The Alpha Vantage market-data API as a plug-in GraphQL module.</p>
+  </div>
+  <figure class="visual codefig"><pre class="frame pad"><code>import { GraphQLModule } from '@graphql-modules/core';
+import alphaVantage from 'alpha-vantage-graphql-module';
+
+export const AppModule = new GraphQLModule({
+  imports: [alphaVantage],
+});</code></pre><figcaption>Usage from the README.</figcaption></figure>
+  <div class="rest">
+    <ul class="facts"><li>Covers time series, forex, crypto and technical indicators; the schema is in <code>src/schema.graphql</code>.</li><li>Works inside a GraphQL Modules app or as a standalone server.</li><li>A hobby project with no affiliation to Alpha Vantage, and still a work in progress. MIT licensed.</li></ul>
+    <p class="note">Began as a fork of zackurben/alphavantage (2017). The README says it no longer shares code with it.</p>
+    <ul class="stack" aria-label="Technology"><li>Node.js</li><li>GraphQL Modules</li><li>GraphQL</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/alpha-vantage-graphql-module">Repository</a></p>
+  </div>
+</article><article class="commit">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2024-05-07">2024-05</time><span>Python</span></p>
+    <h3><a href="https://github.com/Skitionek/streamlit-arango-demo">streamlit-arango-demo</a></h3>
+    <p class="sum">A Streamlit front end for running AQL queries against ArangoDB.</p>
+  </div>
+  
+  <div class="rest">
+    <ul class="facts"><li>Query editor with a syntax-highlighted preview, bind variables, execution plan and validation, and paginated results.</li><li>Sidebar tools show running and slow queries, read and update query tracking, and kill a query by ID.</li><li>A Pipenv script starts a local ArangoDB in Docker.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>Python 3.11+</li><li>Streamlit</li><li>ArangoDB</li><li>Docker</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/streamlit-arango-demo">Repository</a></p>
+  </div>
+</article>
+</section><section class="branch" id="automation" style="--branch:var(--b4)" aria-labelledby="automation-h">
+  <header class="branch-head"><span class="branch-label">automation</span><h2 id="automation-h">Automation and developer tooling</h2><p>GitHub Actions, templates and shell helpers that keep repositories tidy.</p></header>
+  <article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-05-07">2026-05</time></p>
+    <h3><a href="https://github.com/Skitionek/lint">lint</a></h3>
+    <p class="sum">A reusable GitHub Action that runs MegaLinter, picks the right flavor itself and opens an auto-fix pull request.</p>
+  </div>
+  <figure class="visual codefig"><pre class="frame pad"><code>jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Skitionek/lint@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}</code></pre><figcaption>Usage from the README.</figcaption></figure>
+  <div class="rest">
+    <ul class="facts"><li>Detects the MegaLinter flavor (python, javascript, …, or all) and reports it as an output.</li><li>Outputs say whether linters changed files and give the URL of the fix PR. A commit message containing “skip fix” turns fix PRs off.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>GitHub Actions</li><li>MegaLinter</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/lint">Repository</a></p>
+  </div>
+</article><article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-04-17">2026-04</time></p>
+    <h3><a href="https://github.com/Skitionek/template">template</a></h3>
+    <p class="sum">A repository template with the automation I add to every project.</p>
+  </div>
+  <figure class="visual diagram"><div class="frame pad"><div class="flows"><ol class="flow" style="--n:3"><li><b>Push or PR</b><span></span></li><li><b>MegaLinter</b><span>via Skitionek/lint</span></li><li><b>Fix PR</b><span>auto-approved</span></li></ol><ol class="flow" style="--n:2"><li><b>Tests fail</b><span>on a PR</span></li><li><b>@copilot comment</b><span>asks for a fix</span></li></ol><ol class="flow" style="--n:2"><li><b>Dependabot PR</b><span></span></li><li><b>Approved and</b><span>squash-merged</span></li></ol></div></div><figcaption>The automation flow described in the README.</figcaption></figure>
+  <div class="rest">
+    <ul class="facts"><li>Copilot guidelines for Conventional Commits and the changelog, CODEOWNERS and funding links.</li><li>Lint, CodeQL, Dependabot auto-merge and a Copilot auto-fix comment on failing CI are wired up from the first commit.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>GitHub Actions</li><li>Dependabot</li><li>CodeQL</li><li>Copilot</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/template">Repository</a></p>
+  </div>
+</article><article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2025-06-09">2025-06</time><span>Python</span></p>
+    <h3><a href="https://github.com/Skitionek/github-action-home-automation">github-action-home-automation</a></h3>
+    <p class="sum">A GitHub Action that sends my robot vacuum to the trash bin on a schedule.</p>
+  </div>
+  <figure class="visual diagram"><div class="frame pad"><ol class="flow" style="--n:4"><li><b>Schedule</b><span>Thursdays, 18:00 UTC</span></li><li><b>GitHub runner</b><span>runs the script</span></li><li><b>Roborock cloud</b><span>MQTT command</span></li><li><b>Vacuum</b><span>drives to the bin</span></li></ol></div><figcaption>From the README and the workflow file.</figcaption></figure>
+  <div class="rest">
+    <ul class="facts"><li>Commands go through the Roborock cloud API over MQTT, so no local network access or self-hosted runner is needed.</li><li>Credentials live in Actions secrets, errors raise GitHub notifications and every run is logged in the Actions tab.</li><li>The README calls it “ingenious in its simplicity”: a small exploratory project that does its job.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>Python</li><li>GitHub Actions</li><li>MQTT</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/github-action-home-automation">Repository</a></p>
+  </div>
+</article><article class="commit">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2020-04-24">2020-04</time><span>Dockerfile</span><span>MIT</span></p>
+    <h3><a href="https://github.com/Skitionek/star-wars-quote-action">star-wars-quote-action</a></h3>
+    <p class="sum">A deliberately silly container action that logs a random Star Wars quote, used to test other actions.</p>
+  </div>
+  
+  <div class="rest">
+    <ul class="facts"><li>Wraps the swquotes.digitaljedi.dk API in a Dockerfile-based action. MIT licensed.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>Docker</li><li>GitHub Actions</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/star-wars-quote-action">Repository</a></p>
+  </div>
+</article><article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2021-12-03">2021-12</time><span>Shell</span></p>
+    <h3><a href="https://github.com/Skitionek/dev">dev</a></h3>
+    <p class="sum">A Bash toolkit with tab completion for everyday Kubernetes, Python and git chores.</p>
+  </div>
+  <figure class="visual codefig"><pre class="frame pad"><code>&gt; dev &lt;tab&gt; &lt;tab&gt;
+activate  common  git  help  jenkins
+kill  port-forward  python  self_check  update</code></pre><figcaption>Autocompletion, from the README (wrapped onto two lines).</figcaption></figure>
+  <div class="rest">
+    <ul class="facts"><li><code>dev port-forward</code> wraps kubectl for services, <code>dev kill</code> frees a port, and python and git helpers sit alongside.</li><li>One git helper finds the last commit that can affect a Docker image, based on <code>.dockerignore</code>.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>Bash</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/dev">Repository</a></p>
+  </div>
+</article><article class="commit">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2020-07-31">2020-07</time><span>Pug</span></p>
+    <h3><a href="https://github.com/Skitionek/Skitionek">Skitionek (this profile)</a></h3>
+    <p class="sum">This profile repository. The README is compiled from Pug templates and refreshed nightly by a GitHub Action.</p>
+  </div>
+  
+  <div class="rest">
+    <ul class="facts"><li>A scheduled workflow rewrites the open-source contribution stats every night, and pull requests get a README build check.</li><li>This portfolio page lives in <code>docs/</code>.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>Pug</li><li>GitHub Actions</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/Skitionek">Repository</a></p>
+  </div>
+</article>
+</section><section class="branch" id="other" style="--branch:var(--b5)" aria-labelledby="other-h">
+  <header class="branch-head"><span class="branch-label">hardware-docs</span><h2 id="other-h">Hardware and documents</h2><p>A LabVIEW control unit and a CV that builds itself.</p></header>
+  <article class="commit has-visual">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2018-02-26">2018-02</time><span>LabVIEW</span></p>
+    <h3><a href="https://github.com/Skitionek/master-control-unit-for-e-formula">master-control-unit-for-e-formula</a></h3>
+    <p class="sum">LabVIEW code for the master control unit of an electric formula vehicle.</p>
+  </div>
+  <figure class="visual diagram"><div class="frame pad"><ul class="ops" aria-label="Some of the VIs"><li>CANopen Read SDO</li><li>CANopen Write RPDO</li><li>CANopen SYNC</li><li>CANopen Heartbeat</li><li>CANopen Emergency</li><li>Boot Motor Controllers</li><li>BMS Request</li><li>Break pedal position</li><li>FPGA Based CAN decoding</li><li>TDMS viewer</li></ul></div><figcaption>File names from the repository’s <code>implementation</code> folder.</figcaption></figure>
+  <div class="rest">
+    <ul class="facts"><li>The VIs cover CANopen messaging (SDO, PDO, SYNC, heartbeat, emergency), motor-controller boot-up, BMS requests, brake-pedal position, FPGA-based CAN decoding and a TDMS log viewer.</li><li>The repository also carries a DTU XeLaTeX thesis template for the written report.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>LabVIEW</li><li>FPGA</li><li>CANopen</li><li>XeLaTeX</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/master-control-unit-for-e-formula">Repository</a></p>
+  </div>
+</article><article class="commit">
+  <div class="head">
+    <p class="meta"><span class="meta-k">started</span><time datetime="2020-08-10">2020-08</time><span>TeX</span></p>
+    <h3><a href="https://github.com/Skitionek/Curriculim-Vitae">Curriculim-Vitae</a></h3>
+    <p class="sum">My CV as XeLaTeX source, built and published by GitHub Actions.</p>
+  </div>
+  
+  <div class="rest">
+    <ul class="facts"><li>One <code>main.tex</code> produces the PDF artifact, the Markdown README and the GitHub Pages site.</li></ul>
+    
+    <ul class="stack" aria-label="Technology"><li>XeLaTeX</li><li>GitHub Actions</li><li>GitHub Pages</li></ul>
+    <p class="links"><a class="btn" href="https://github.com/Skitionek/Curriculim-Vitae">Repository</a><a class="btn" href="https://skitionek.github.io/Curriculim-Vitae/">Live CV</a></p>
+  </div>
+</article>
+</section>
+<footer>
+<h2>About this page</h2>
+<p>Each entry shows when the project started: the month its repository was created on GitHub. Twelve other public repositories are archived and not listed.</p>
+<p>The opening animation is <a href="#neuroform">Neuroform</a> running live, from a build kept in <code>docs/neuroform</code>. Visitors who prefer reduced motion, save data or have no WebGL see a still instead, and slow machines drop the cell rendering, then use fewer nodes, before settling on the still.</p>
+<p>Browser clips are screen recordings of the live GitHub Pages sites or local builds, with a pointer and captions added. Terminal clips run the real command and replay its output. The Mozg clip comes from that repository.</p>
+<p>I also send pull requests to other open-source projects, for example gdown, MegaLinter, nf-core/rnaseq and actions/javascript-action. They are summarised on my <a href="https://github.com/Skitionek">GitHub profile</a>.</p>
+</footer>
+</div>
+<script>
+(function(){
+  var root=document.documentElement, stage=document.getElementById('stage');
+  if(!stage) return;
+  var frame=stage.querySelector('.stage-frame'), btn=stage.querySelector('.stage-play');
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var saveData=navigator.connection&&navigator.connection.saveData;
+  var opened=false, el=null, inView=true, step=0, slow=0;
+
+  function open(){ if(opened) return; opened=true; root.classList.add('is-open'); }
+  setTimeout(open,5000);                     // the text never stays hidden
+
+  function webgl(){ try{ var c=document.createElement('canvas'); return !!(c.getContext('webgl2')||c.getContext('webgl')); }catch(e){ return false; } }
+  function themeName(){
+    var t=root.getAttribute('data-theme'); if(t==='dark'||t==='light') return t;
+    return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  }
+  function bgHex(){
+    var m=(getComputedStyle(document.body).backgroundColor.match(/\d+/g)||[]).slice(0,3);
+    return m.map(function(n){ return ('0'+(+n).toString(16)).slice(-2); }).join('');
+  }
+  function sync(){ if(!el) return; el.setAttribute('theme',themeName()); el.setAttribute('background',bgHex()); }
+  if(window.MutationObserver) new MutationObserver(sync).observe(root,{attributes:true,attributeFilter:['data-theme']});
+  if(window.matchMedia){ var mq=matchMedia('(prefers-color-scheme: dark)'); if(mq.addEventListener) mq.addEventListener('change',sync); else if(mq.addListener) mq.addListener(sync); }
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){ inView=es[0].isIntersecting; }).observe(stage);
+
+  // scrolling over the brain must scroll the page, not zoom the brain
+  stage.addEventListener('wheel',function(e){ e.stopImmediatePropagation(); },{capture:true,passive:true});
+
+  function fire(){ try{ if(el&&el.stimulate) el.stimulate(); }catch(e){} }
+  function ambient(){
+    setTimeout(function(){ if(!el) return; if(!document.hidden&&inView) fire(); ambient(); },4200+Math.random()*3200);
+  }
+  function opening(){ [700,2000,3600].forEach(function(t){ setTimeout(fire,t); }); setTimeout(ambient,4200); }
+
+  // Slow machines: measure the page's own frame rate (the engine's readout is a per-frame average and lags),
+  // switch the cells off first, then use fewer nodes, then settle on the still.
+  function settle(){ stage.classList.remove('is-live'); if(el){ el.remove(); el=null; } open(); }
+  function stepDown(){
+    step++;
+    if(!el) return;
+    if(step===1) el.setAttribute('neurons','0');
+    else if(step===2) el.setAttribute('nodes','25000');
+    else settle();
+  }
+  var building=false, frames=0, t0=0, low=0;
+  function watch(t){
+    if(!el) return;
+    if(document.hidden||!inView||!stage.classList.contains('is-live')){ frames=0; t0=0; low=0; }
+    else {
+      frames++; if(!t0) t0=t;
+      if(t-t0>=1000){
+        var rate=frames*1000/(t-t0); frames=0; t0=t;
+        if(!building && rate<10) low++; else if(rate>=14) low=0;
+        if(low>=3){ low=0; stepDown(); }
+      }
+    }
+    requestAnimationFrame(watch);
+  }
+  function onStats(e){ building=!!(e.detail&&e.detail.building); }
+
+  function boot(){
+    if(el) return;
+    if(!webgl()){ open(); return; }
+    if(btn) btn.hidden=true;
+    import('./neuroform/neuroform.standalone.js').then(function(){
+      var small=window.matchMedia&&matchMedia('(max-width: 700px), (pointer: coarse)').matches;
+      el=document.createElement('neuro-form');
+      el.setAttribute('tabindex','-1'); el.setAttribute('keyboard','none');
+      if(small) el.setAttribute('preset','lite'); else el.setAttribute('nodes','70000');
+      sync();
+      el.addEventListener('firstrender',function(){ stage.classList.add('is-live'); open(); opening(); requestAnimationFrame(watch); },{once:true});
+      el.addEventListener('error',settle);
+      el.addEventListener('stats',onStats);
+      frame.appendChild(el);
+    }).catch(open);
+  }
+
+  if(calm||saveData){ open(); if(btn){ btn.hidden=false; btn.addEventListener('click',function(){ boot(); }); } }
+  else boot();
+})();
+
+(function(){
+  var vids=[].slice.call(document.querySelectorAll('video[data-auto]'));
+  vids.forEach(function(v){
+    v.addEventListener('pause',function(){ if(v.dataset.sys){ delete v.dataset.sys; } else { v.dataset.user='1'; } });
+    v.addEventListener('play',function(){ delete v.dataset.user; });
+  });
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(calm||!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting&&e.intersectionRatio>=0.55){ if(!v.dataset.user){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); } }
+      else if(!v.paused){ v.dataset.sys='1'; v.pause(); }
+    });
+  },{threshold:[0,0.55,1]});
+  vids.forEach(function(v){ io.observe(v); });
+})();
+</script>
+</body>
+</html>
