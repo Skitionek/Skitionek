@@ -1,0 +1,240 @@
+# Publishes the portfolio in docs/ to GitHub Pages, with a live preview of
+# every open pull request that changes it at <site>/pr/<number>/.
+#
+# The opening animation is Neuroform. It is installed from its repository when
+# the site is built (npm builds the package on install), and scripts/build-site.sh
+# puts its standalone bundle next to the page.
+#
+# Both the site and the previews are tracked as GitHub deployments: the site in
+# the github-pages environment (deploy-pages records it), each preview in its
+# own pr-<number>-preview environment, so a pull request shows its preview as a
+# deployment with a "View deployment" link.
+#
+# One-time setup: repository Settings → Pages → Source: "GitHub Actions".
+#
+# Pages holds one deployment at a time, so every run rebuilds the whole site:
+# the default branch at the root, then each open pull request that changes
+# docs/ into its own folder. A preview appears when a pull request opens or is
+# pushed to, and disappears with the next run after it closes.
+#
+# Pull requests run this as pull_request_target: the workflow comes from the
+# default branch, which is what the github-pages environment allows to deploy.
+# Their files are only copied, never run, in a job that can read and nothing
+# more, and pull requests from forks are left out. For the same reason a change
+# to this workflow takes effect once it is on the default branch.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - docs/**
+      - scripts/build-site.sh
+      - .github/workflows/pages.yml
+  pull_request_target:
+    types: [opened, reopened, synchronize, closed]
+    paths:
+      - docs/**
+  # Rebuilds the site, which also picks up a newer Neuroform.
+  workflow_dispatch:
+
+permissions: {}
+
+env:
+  # The Neuroform branch, tag or commit that the opening animation is built
+  # from. Pin it to a commit to freeze the animation.
+  NEUROFORM_REF: main
+
+# The newest run includes everything, so an older one can be dropped.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  # The pull request's preview deployment, in progress while the site builds.
+  start:
+    if: >-
+      github.event_name == 'pull_request_target' &&
+      github.event.action != 'closed' &&
+      !github.event.pull_request.head.repo.fork
+    runs-on: ubuntu-latest
+    permissions:
+      deployments: write
+    outputs:
+      id: ${{ steps.deployment.outputs.result }}
+    steps:
+      - id: deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const { owner, repo } = context.repo;
+            const { data: deployment } = await github.rest.repos.createDeployment({
+              owner, repo,
+              ref: pr.head.sha,
+              environment: `pr-${pr.number}-preview`,
+              description: `Preview of #${pr.number}`,
+              transient_environment: true,
+              production_environment: false,
+              auto_merge: false,
+              required_contexts: [],
+            });
+            await github.rest.repos.createDeploymentStatus({
+              owner, repo,
+              deployment_id: deployment.id,
+              state: 'in_progress',
+              log_url: `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`,
+            });
+            return deployment.id;
+
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      considered: ${{ steps.previews.outputs.considered }}
+      previews: ${{ steps.previews.outputs.built }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # The peer dependency on Playwright is only for Neuroform's snapshot tool.
+      - name: Install Neuroform
+        run: >-
+          npm install --prefix "$RUNNER_TEMP/neuroform" --legacy-peer-deps --no-audit --no-fund
+          "git+https://github.com/Skitionek/Neuroform.git#$NEUROFORM_REF"
+      - name: Build the site
+        run: scripts/build-site.sh docs _site "$RUNNER_TEMP/neuroform/node_modules/neuroform"
+
+      # The page uses relative paths, so the same output works at the root and
+      # in a preview folder. The build script always comes from the default
+      # branch; a pull request contributes only its docs/ files.
+      - name: Build a preview of each open pull request that changes the page
+        id: previews
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          neuroform="$RUNNER_TEMP/neuroform/node_modules/neuroform"
+          gh pr list --repo "$GITHUB_REPOSITORY" --state open --limit 30 \
+            --json number,headRefOid,isCrossRepository \
+            --jq '.[] | select(.isCrossRepository | not) | "\(.number) \(.headRefOid)"' > "$RUNNER_TEMP/prs.txt"
+          considered=""
+          built=""
+          while read -r number sha <&3; do
+            [ -n "$number" ] || continue
+            changed=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$number/files" --paginate --jq '.[].filename')
+            if ! grep -q '^docs/' <<< "$changed"; then
+              continue
+            fi
+            considered="$considered $number"
+            dir="$RUNNER_TEMP/pr-$number"
+            if git fetch --no-tags --depth=1 origin "$sha" \
+              && git worktree add --detach "$dir" "$sha" \
+              && scripts/build-site.sh "$dir/docs" "_site/pr/$number" "$neuroform"; then
+              built="$built $number"
+            else
+              echo "::warning::the preview of #$number did not build"
+            fi
+          done 3< "$RUNNER_TEMP/prs.txt"
+          echo "considered=$considered" >> "$GITHUB_OUTPUT"
+          echo "built=$built" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  # Records each preview as a deployment of its pull request's head: the
+  # triggering pull request's (started above) and any other whose preview
+  # is not yet recorded for its current commit. A closed pull request's
+  # preview is marked inactive.
+  track:
+    needs: [start, build, deploy]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    permissions:
+      deployments: write
+      pull-requests: read
+    steps:
+      - uses: actions/github-script@v7
+        env:
+          SITE: ${{ needs.deploy.outputs.url }}
+          DEPLOYED: ${{ needs.deploy.result == 'success' }}
+          CONSIDERED: ${{ needs.build.outputs.considered }}
+          BUILT: ${{ needs.build.outputs.previews }}
+          STARTED: ${{ needs.start.outputs.id }}
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const logUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const environment = (number) => `pr-${number}-preview`;
+            const numbers = (text) => (text || '').split(' ').filter(Boolean).map(Number);
+            const considered = numbers(process.env.CONSIDERED);
+            const built = numbers(process.env.BUILT);
+            const deployed = process.env.DEPLOYED === 'true';
+            const trigger = context.payload.pull_request;
+
+            if (trigger && context.payload.action === 'closed') {
+              const deployments = await github.rest.repos.listDeployments({ owner, repo, environment: environment(trigger.number), per_page: 10 });
+              for (const { id } of deployments.data) {
+                await github.rest.repos.createDeploymentStatus({ owner, repo, deployment_id: id, state: 'inactive' });
+              }
+            }
+
+            // Only pull requests that change the page have a preview.
+            const open = (await github.paginate(github.rest.pulls.list, { owner, repo, state: 'open' }))
+              .filter((pr) => pr.head.repo?.full_name === `${owner}/${repo}` && considered.includes(pr.number));
+            for (const pr of open) {
+              const ok = deployed && built.includes(pr.number);
+              const status = {
+                state: ok ? 'success' : 'failure',
+                log_url: logUrl,
+                ...(ok ? { environment_url: new URL(`pr/${pr.number}/`, process.env.SITE).href } : {}),
+                auto_inactive: true,
+              };
+              let id = trigger?.number === pr.number && process.env.STARTED ? Number(process.env.STARTED) : null;
+              // Only the pull request that started the run hears of a
+              // failure; the others keep whatever preview is live.
+              if (!id && !ok) continue;
+              if (!id) {
+                // Already recorded for this commit: leave a success alone,
+                // settle anything else (a cancelled run's, say).
+                const [latest] = (await github.rest.repos.listDeployments({ owner, repo, environment: environment(pr.number), per_page: 1 })).data;
+                if (latest && latest.sha === pr.head.sha) {
+                  const [last] = (await github.rest.repos.listDeploymentStatuses({ owner, repo, deployment_id: latest.id, per_page: 1 })).data;
+                  if (last?.state === 'success') continue;
+                  id = latest.id;
+                } else {
+                  id = (await github.rest.repos.createDeployment({
+                    owner, repo,
+                    ref: pr.head.sha,
+                    environment: environment(pr.number),
+                    description: `Preview of #${pr.number}`,
+                    transient_environment: true,
+                    production_environment: false,
+                    auto_merge: false,
+                    required_contexts: [],
+                  })).data.id;
+                }
+              }
+              await github.rest.repos.createDeploymentStatus({ owner, repo, deployment_id: id, ...status });
+              core.info(`#${pr.number}: ${status.state}${ok ? ` at ${status.environment_url}` : ''}`);
+            }
