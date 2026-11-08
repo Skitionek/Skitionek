@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
 <style>
-/* Concept: the page is a git history. Each section is a branch with a coloured rail, each repository is a commit on it, dated by its last push. */
+/* Concept: the page is a git history. Each section is a branch with a coloured rail, each repository is a commit on it, dated by when the project started. */
 :root{
   --bg:#F3F5F9; --surface:#FFFFFF; --surface-2:#E8ECF4; --ink:#0F1A2B; --ink-2:#47566D; --line:#D3DAE6; --line-strong:#B4BFD1;
   --accent:#2F80ED; --link:#1B62C9; --focus:#2F80ED;
@@ -108,6 +108,7 @@ kbd{border:1px solid var(--line-strong);border-bottom-width:2px}
 }
 .meta{display:flex;flex-wrap:wrap;gap:2px 12px;margin:0 0 6px;font:400 12.5px var(--font-mono);color:var(--ink-2);letter-spacing:.02em}
 .meta .meta-k{text-transform:uppercase;letter-spacing:.08em;font-size:11px;opacity:.85}
+.meta time{font:600 15px var(--font-mono);color:var(--ink);letter-spacing:.02em}
 .meta span + span::before,.meta time + span::before{content:"·";margin-right:12px}
 .commit h3{font:650 clamp(1.5rem,3vw,2rem)/1.15 var(--font-display);letter-spacing:-.012em;margin:0 0 10px;overflow-wrap:anywhere}
 .commit h3 a{color:var(--ink);text-decoration:none}
@@ -196,7 +197,7 @@ footer p{margin:0}
   <header class="branch-head"><span class="branch-label">data-platforms</span><h2 id="data-h">Data platforms and bioinformatics</h2><p>Systems that connect many data sources, and the tooling around Nextflow pipelines.</p></header>
   <article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-07">2026-11-07</time><span>JavaScript</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-03-30">2026-03</time><span>JavaScript</span></p>
     <h3><a href="https://github.com/Skitionek/Mozg">Mozg</a></h3>
     <p class="sum">One GraphQL endpoint that queries 47 public life-science databases live and joins their answers.</p>
   </div>
@@ -212,20 +213,20 @@ footer p{margin:0}
   </div>
 </article><article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-08">2026-11-08</time><span>TypeScript</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2022-07-25">2022-07</time><span>TypeScript</span></p>
     <h3><a href="https://github.com/Skitionek/mycelium">mycelium</a></h3>
     <p class="sum">A knowledge-graph workbench for biological data: add files, annotate them with domain entities, explore the graph.</p>
   </div>
   <figure class="visual diagram"><div class="frame pad"><svg class="arch" viewBox="0 0 720 330" role="img" aria-labelledby="arch-t arch-d"><title id="arch-t">Mycelium architecture</title><desc id="arch-d">A browser client calls core Python services, which depend on PostgreSQL, Neo4j, Elasticsearch, Redis, PDFParser and Sendgrid.</desc><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="head"/></marker></defs><text class="g" x="0" y="14">CLIENT</text><rect class="b" x="0" y="135" width="170" height="56" rx="6"/><text class="t" x="12" y="161.0">Frontend</text><text class="s" x="12" y="177.0">Angular SPA</text><path class="e" d="M172 163H258" marker-end="url(#ah)"/><text class="g" x="262" y="14">CORE SERVICES</text><rect class="grp" x="262" y="24" width="206" height="296" rx="10"/><rect class="b" x="276" y="40" width="178" height="56" rx="6"/><text class="t" x="288" y="66.0">Appserver</text><text class="s" x="288" y="82.0">Flask API</text><rect class="b" x="276" y="110" width="178" height="56" rx="6"/><text class="t" x="288" y="136.0">Statistical enrichment</text><text class="s" x="288" y="152.0">Flask service</text><rect class="b" x="276" y="180" width="178" height="56" rx="6"/><text class="t" x="288" y="206.0">Cache invalidator</text><text class="s" x="288" y="222.0">recurrent task runner</text><rect class="b" x="276" y="250" width="178" height="56" rx="6"/><text class="t" x="288" y="276.0">Graph data migrator</text><text class="s" x="288" y="292.0">Liquibase</text><path class="e" d="M470 163H556" marker-end="url(#ah)"/><text class="g" x="560" y="14">BACKING SERVICES</text><rect class="grp" x="560" y="24" width="160" height="296" rx="10"/><rect class="b" x="572" y="36" width="136" height="40" rx="6"/><text class="t" x="584" y="54.0">PostgreSQL</text><text class="s" x="584" y="70.0">relational data</text><rect class="b" x="572" y="82" width="136" height="40" rx="6"/><text class="t" x="584" y="100.0">Neo4j</text><text class="s" x="584" y="116.0">knowledge graph</text><rect class="b" x="572" y="128" width="136" height="40" rx="6"/><text class="t" x="584" y="146.0">Elasticsearch</text><text class="s" x="584" y="162.0">full-text search</text><rect class="b" x="572" y="174" width="136" height="40" rx="6"/><text class="t" x="584" y="192.0">Redis</text><text class="s" x="584" y="208.0">cache</text><rect class="b" x="572" y="220" width="136" height="40" rx="6"/><text class="t" x="584" y="238.0">PDFParser</text><text class="s" x="584" y="254.0">document parsing</text><rect class="b" x="572" y="266" width="136" height="40" rx="6"/><text class="t" x="584" y="284.0">Sendgrid</text><text class="s" x="584" y="300.0">email</text></svg></div><figcaption>No clip: the full stack needs four databases and several services. Services and datastores as listed in the README.</figcaption></figure>
   <div class="rest">
-    <ul class="facts"><li>Started as a fork of Lifelike (SBRG). Modernised to Angular 22, Flask 3, d3 7 and Bootstrap 5, with the PDF viewer patched for CVE-2024-4367.</li><li>Built-in viewers for PDF, Office files, protein structures (Mol*) and code. Local folders open without uploading and are indexed in the background.</li><li>Visualisations: maps, enrichment tables, Sankey diagrams and a pathway browser.</li><li>Zero-config dev container and Codespaces, Playwright end-to-end tests, CI for tests, Docker publishing, CodeQL and Dependabot auto-merge. Panels use <a href="#route-with-dynamic-outlets">route-with-dynamic-outlets</a>.</li></ul>
-    <p class="note">This project uses code provided by <a href="https://github.com/SBRG/lifelike">Lifelike.bio</a>.</p>
+    <ul class="facts"><li>A fork of Lifelike (SBRG), modernised to Angular 22, Flask 3, d3 7 and Bootstrap 5, with the PDF viewer patched for CVE-2024-4367.</li><li>Built-in viewers for PDF, Office files, protein structures (Mol*) and code. Local folders open without uploading and are indexed in the background.</li><li>Visualisations: maps, enrichment tables, Sankey diagrams and a pathway browser.</li><li>Zero-config dev container and Codespaces, Playwright end-to-end tests, CI for tests, Docker publishing, CodeQL and Dependabot auto-merge. Panels use <a href="#route-with-dynamic-outlets">route-with-dynamic-outlets</a>.</li></ul>
+    <p class="note">Built on the open-source release of Lifelike, whose history begins in January 2022; this repository was created in July 2022. This project uses code provided by <a href="https://github.com/SBRG/lifelike">Lifelike.bio</a>.</p>
     <ul class="stack" aria-label="Technology"><li>Angular</li><li>TypeScript</li><li>Flask</li><li>Neo4j</li><li>PostgreSQL</li><li>Elasticsearch</li><li>Redis</li></ul>
     <p class="links"><a class="btn" href="https://github.com/Skitionek/mycelium">Repository</a><a class="btn" href="https://github.com/codespaces/new/Skitionek/mycelium?quickstart=1&amp;devcontainer_path=.devcontainer%2Fdevcontainer.json">Open in Codespaces</a></p>
   </div>
 </article><article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-06">2026-11-06</time><span>Java</span><span>MIT</span><span>★ 9</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-03-06">2026-03</time><span>Java</span><span>MIT</span><span>★ 9</span></p>
     <h3><a href="https://github.com/Skitionek/nf-mapper">nf-mapper</a></h3>
     <p class="sum">Turns a Nextflow pipeline into a Mermaid git graph, straight from its <code>.nf</code> source.</p>
   </div>
@@ -241,7 +242,7 @@ footer p{margin:0}
   </div>
 </article><article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-04">2026-11-04</time><span>Python</span><span>GPL-3.0</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-10-15">2026-10</time><span>Python</span><span>GPL-3.0</span></p>
     <h3><a href="https://github.com/Skitionek/nf-migrate">nf-migrate</a></h3>
     <p class="sum">Applies nf-core template updates as a chain of small, idempotent migrations instead of one large git merge.</p>
   </div>
@@ -259,7 +260,7 @@ footer p{margin:0}
   </div>
 </article><article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-09-13">2026-09-13</time><span>Nextflow</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-08-06">2026-08</time><span>Nextflow</span></p>
     <h3><a href="https://github.com/Skitionek/nf-tree">nf-tree</a></h3>
     <p class="sum">A minimal Nextflow pipeline that prints the working directory as a tree, like the Linux <code>tree</code> command.</p>
   </div>
@@ -276,7 +277,7 @@ nextflow run . --path /absolute/path</code></pre><figcaption>Usage from the READ
   <header class="branch-head"><span class="branch-label">in-the-browser</span><h2 id="browser-h">In the browser</h2><p>Interactive projects that run on GitHub Pages.</p></header>
   <article class="commit" id="neuroform">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-10-08">2026-10-08</time><span>TypeScript</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-10-06">2026-10</time><span>TypeScript</span></p>
     <h3><a href="https://github.com/Skitionek/Neuroform">Neuroform</a></h3>
     <p class="sum">A brain-shaped cloud of points wired by synapses. Touch a node and a wave of activation spreads through the tissue.</p>
   </div>
@@ -289,7 +290,7 @@ nextflow run . --path /absolute/path</code></pre><figcaption>Usage from the READ
   </div>
 </article><article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-02">2026-11-02</time><span>JavaScript</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-10-14">2026-10</time><span>JavaScript</span></p>
     <h3><a href="https://github.com/Skitionek/serverless-office-converter">serverless-office-converter</a></h3>
     <p class="sum">Converts Word, Excel, PowerPoint and OpenDocument files in the browser. LibreOffice runs as WebAssembly, so nothing is uploaded.</p>
   </div>
@@ -305,7 +306,7 @@ nextflow run . --path /absolute/path</code></pre><figcaption>Usage from the READ
   </div>
 </article><article class="commit has-visual" id="route-with-dynamic-outlets">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-06">2026-11-06</time><span>TypeScript</span><span>MIT</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2023-07-15">2023-07</time><span>TypeScript</span><span>MIT</span></p>
     <h3><a href="https://github.com/Skitionek/route-with-dynamic-outlets">route-with-dynamic-outlets</a></h3>
     <p class="sum">An Angular library for URL-driven panel and tab layouts in which every panel is a real route.</p>
   </div>
@@ -321,7 +322,7 @@ nextflow run . --path /absolute/path</code></pre><figcaption>Usage from the READ
   </div>
 </article><article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-06">2026-11-06</time><span>JavaScript</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2016-11-09">2016-11</time><span>JavaScript</span></p>
     <h3><a href="https://github.com/Skitionek/DataVirtualisation">DataVirtualisation</a></h3>
     <p class="sum">An AngularJS app with an interactive Plotly map of process capacity across the USA and a searchable chemical selector.</p>
   </div>
@@ -340,7 +341,7 @@ nextflow run . --path /absolute/path</code></pre><figcaption>Usage from the READ
   <header class="branch-head"><span class="branch-label">cloud-libraries</span><h2 id="cloud-h">Cloud storage and data libraries</h2><p>Small libraries and extensions for Azure, CKAN, ArangoDB and market data.</p></header>
   <article class="commit">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-06">2026-11-06</time><span>Python</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-05-21">2026-05</time><span>Python</span></p>
     <h3><a href="https://github.com/Skitionek/azure-data-lake-fs">azure-data-lake-fs</a></h3>
     <p class="sum">A Python client for Azure Data Lake Storage Gen2 that works around the 64-record ACL limit.</p>
   </div>
@@ -353,7 +354,7 @@ nextflow run . --path /absolute/path</code></pre><figcaption>Usage from the READ
   </div>
 </article><article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-06">2026-11-06</time><span>Python</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2025-09-29">2025-09</time><span>Python</span></p>
     <h3><a href="https://github.com/Skitionek/ckanext-native-cloud-storage">ckanext-native-cloud-storage</a></h3>
     <p class="sum">A CKAN extension that stores files in Azure Data Lake Storage Gen2 and publishes file events to Service Bus.</p>
   </div>
@@ -369,7 +370,7 @@ ckanext.native_cloud_storage.azure.file_system_name = ckan-storage</code></pre><
   </div>
 </article><article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-06">2026-11-06</time><span>JavaScript</span><span>MIT</span><span>★ 1</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2019-05-20">2019-05</time><span>JavaScript</span><span>MIT</span><span>★ 1</span></p>
     <h3><a href="https://github.com/Skitionek/alpha-vantage-graphql-module">alpha-vantage-graphql-module</a></h3>
     <p class="sum">The Alpha Vantage market-data API as a plug-in GraphQL module.</p>
   </div>
@@ -381,13 +382,13 @@ export const AppModule = new GraphQLModule({
 });</code></pre><figcaption>Usage from the README.</figcaption></figure>
   <div class="rest">
     <ul class="facts"><li>Covers time series, forex, crypto and technical indicators; the schema is in <code>src/schema.graphql</code>.</li><li>Works inside a GraphQL Modules app or as a standalone server.</li><li>A hobby project with no affiliation to Alpha Vantage, and still a work in progress. MIT licensed.</li></ul>
-    
+    <p class="note">Began as a fork of zackurben/alphavantage (2017). The README says it no longer shares code with it.</p>
     <ul class="stack" aria-label="Technology"><li>Node.js</li><li>GraphQL Modules</li><li>GraphQL</li></ul>
     <p class="links"><a class="btn" href="https://github.com/Skitionek/alpha-vantage-graphql-module">Repository</a></p>
   </div>
 </article><article class="commit">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-03-13">2026-03-13</time><span>Python</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2024-05-07">2024-05</time><span>Python</span></p>
     <h3><a href="https://github.com/Skitionek/streamlit-arango-demo">streamlit-arango-demo</a></h3>
     <p class="sum">A Streamlit front end for running AQL queries against ArangoDB.</p>
   </div>
@@ -403,7 +404,7 @@ export const AppModule = new GraphQLModule({
   <header class="branch-head"><span class="branch-label">automation</span><h2 id="automation-h">Automation and developer tooling</h2><p>GitHub Actions, templates and shell helpers that keep repositories tidy.</p></header>
   <article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-06">2026-11-06</time></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-05-07">2026-05</time></p>
     <h3><a href="https://github.com/Skitionek/lint">lint</a></h3>
     <p class="sum">A reusable GitHub Action that runs MegaLinter, picks the right flavor itself and opens an auto-fix pull request.</p>
   </div>
@@ -422,7 +423,7 @@ export const AppModule = new GraphQLModule({
   </div>
 </article><article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-06">2026-11-06</time></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2026-04-17">2026-04</time></p>
     <h3><a href="https://github.com/Skitionek/template">template</a></h3>
     <p class="sum">A repository template with the automation I add to every project.</p>
   </div>
@@ -435,7 +436,7 @@ export const AppModule = new GraphQLModule({
   </div>
 </article><article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-06">2026-11-06</time><span>Python</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2025-06-09">2025-06</time><span>Python</span></p>
     <h3><a href="https://github.com/Skitionek/github-action-home-automation">github-action-home-automation</a></h3>
     <p class="sum">A GitHub Action that sends my robot vacuum to the trash bin on a schedule.</p>
   </div>
@@ -448,7 +449,7 @@ export const AppModule = new GraphQLModule({
   </div>
 </article><article class="commit">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-06">2026-11-06</time><span>Dockerfile</span><span>MIT</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2020-04-24">2020-04</time><span>Dockerfile</span><span>MIT</span></p>
     <h3><a href="https://github.com/Skitionek/star-wars-quote-action">star-wars-quote-action</a></h3>
     <p class="sum">A deliberately silly container action that logs a random Star Wars quote, used to test other actions.</p>
   </div>
@@ -461,7 +462,7 @@ export const AppModule = new GraphQLModule({
   </div>
 </article><article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2021-12-03">2021-12-03</time><span>Shell</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2021-12-03">2021-12</time><span>Shell</span></p>
     <h3><a href="https://github.com/Skitionek/dev">dev</a></h3>
     <p class="sum">A Bash toolkit with tab completion for everyday Kubernetes, Python and git chores.</p>
   </div>
@@ -469,14 +470,14 @@ export const AppModule = new GraphQLModule({
 activate  common  git  help  jenkins
 kill  port-forward  python  self_check  update</code></pre><figcaption>Autocompletion, from the README (wrapped onto two lines).</figcaption></figure>
   <div class="rest">
-    <ul class="facts"><li><code>dev port-forward</code> wraps kubectl for services, <code>dev kill</code> frees a port, and python and git helpers sit alongside.</li><li>One git helper finds the last commit that can affect a Docker image, based on <code>.dockerignore</code>. The newest of these repositories is from 2021.</li></ul>
+    <ul class="facts"><li><code>dev port-forward</code> wraps kubectl for services, <code>dev kill</code> frees a port, and python and git helpers sit alongside.</li><li>One git helper finds the last commit that can affect a Docker image, based on <code>.dockerignore</code>.</li></ul>
     
     <ul class="stack" aria-label="Technology"><li>Bash</li></ul>
     <p class="links"><a class="btn" href="https://github.com/Skitionek/dev">Repository</a></p>
   </div>
 </article><article class="commit">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-11-08">2026-11-08</time><span>Pug</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2020-07-31">2020-07</time><span>Pug</span></p>
     <h3><a href="https://github.com/Skitionek/Skitionek">Skitionek (this profile)</a></h3>
     <p class="sum">This profile repository. The README is compiled from Pug templates and refreshed nightly by a GitHub Action.</p>
   </div>
@@ -492,20 +493,20 @@ kill  port-forward  python  self_check  update</code></pre><figcaption>Autocompl
   <header class="branch-head"><span class="branch-label">hardware-docs</span><h2 id="other-h">Hardware and documents</h2><p>A LabVIEW control unit and a CV that builds itself.</p></header>
   <article class="commit has-visual">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-03-13">2026-03-13</time><span>LabVIEW</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2018-02-26">2018-02</time><span>LabVIEW</span></p>
     <h3><a href="https://github.com/Skitionek/master-control-unit-for-e-formula">master-control-unit-for-e-formula</a></h3>
     <p class="sum">LabVIEW code for the master control unit of an electric formula vehicle.</p>
   </div>
   <figure class="visual diagram"><div class="frame pad"><ul class="ops" aria-label="Some of the VIs"><li>CANopen Read SDO</li><li>CANopen Write RPDO</li><li>CANopen SYNC</li><li>CANopen Heartbeat</li><li>CANopen Emergency</li><li>Boot Motor Controllers</li><li>BMS Request</li><li>Break pedal position</li><li>FPGA Based CAN decoding</li><li>TDMS viewer</li></ul></div><figcaption>File names from the repository’s <code>implementation</code> folder.</figcaption></figure>
   <div class="rest">
-    <ul class="facts"><li>The VIs cover CANopen messaging (SDO, PDO, SYNC, heartbeat, emergency), motor-controller boot-up, BMS requests, brake-pedal position, FPGA-based CAN decoding and a TDMS log viewer.</li><li>The repository also carries a DTU XeLaTeX thesis template for the written report. The code was imported in 2018.</li></ul>
+    <ul class="facts"><li>The VIs cover CANopen messaging (SDO, PDO, SYNC, heartbeat, emergency), motor-controller boot-up, BMS requests, brake-pedal position, FPGA-based CAN decoding and a TDMS log viewer.</li><li>The repository also carries a DTU XeLaTeX thesis template for the written report.</li></ul>
     
     <ul class="stack" aria-label="Technology"><li>LabVIEW</li><li>FPGA</li><li>CANopen</li><li>XeLaTeX</li></ul>
     <p class="links"><a class="btn" href="https://github.com/Skitionek/master-control-unit-for-e-formula">Repository</a></p>
   </div>
 </article><article class="commit">
   <div class="head">
-    <p class="meta"><span class="meta-k">last push</span><time datetime="2026-09-15">2026-09-15</time><span>TeX</span></p>
+    <p class="meta"><span class="meta-k">started</span><time datetime="2020-08-10">2020-08</time><span>TeX</span></p>
     <h3><a href="https://github.com/Skitionek/Curriculim-Vitae">Curriculim-Vitae</a></h3>
     <p class="sum">My CV as XeLaTeX source, built and published by GitHub Actions.</p>
   </div>
@@ -520,7 +521,7 @@ kill  port-forward  python  self_check  update</code></pre><figcaption>Autocompl
 </section>
 <footer>
 <h2>About this page</h2>
-<p>Each entry is dated by the repository’s last push, as reported by GitHub on 2026-11-08. Twelve other public repositories are archived and not listed.</p>
+<p>Each entry shows when the project started: the month its repository was created on GitHub. Twelve other public repositories are archived and not listed.</p>
 <p>The opening animation is <a href="#neuroform">Neuroform</a> running live, from a build kept in <code>docs/neuroform</code>. Visitors who prefer reduced motion, save data or have no WebGL see a still instead, and slow machines drop the cell rendering, then use fewer nodes, before settling on the still.</p>
 <p>Browser clips are screen recordings of the live GitHub Pages sites or local builds, with a pointer and captions added. Terminal clips run the real command and replay its output. The Mozg clip comes from that repository.</p>
 <p>I also send pull requests to other open-source projects, for example gdown, MegaLinter, nf-core/rnaseq and actions/javascript-action. They are summarised on my <a href="https://github.com/Skitionek">GitHub profile</a>.</p>
