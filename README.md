@@ -1,10 +1,10 @@
 <h1 align="center"> Hi, I'm Dominik</h1><p align="center"><img src="https://komarev.com/ghpvc/?username=skitionek&amp;label=Profile%20views&amp;color=2F80ED&amp;style=for-the-badge" alt="skitionek"/> <img src="https://img.shields.io/github/followers/skitionek?label=Followers&amp;style=for-the-badge&amp;color=2F80ED" alt="followers"/> <img src="https://img.shields.io/github/stars/skitionek?label=Stars&amp;style=for-the-badge&amp;color=2F80ED" alt="stars"/></p><p align="center"><a href="https://skitionek.github.io/Skitionek/">Portfolio: the projects I maintain, with demos</a></p><hr/>
 <h3 align="center">Open Source Contributions</h3><div align="center"><!-- region github-pr-stats -->
 
-**Total PRs:** 741 | **Repos(≥1 Merged PR):** 74 | **Showing Repos:** 5
+**Total PRs:** 743 | **Repos(≥1 Merged PR):** 74 | **Showing Repos:** 5
 | Repository | Stars | PR Numbers |
 | --- | ---: | --- |
-| [wkentaro/gdown](https://github.com/wkentaro/gdown) | 5483 ⭐ | [#246](https://github.com/wkentaro/gdown/pull/246), [#244](https://github.com/wkentaro/gdown/pull/244) |
+| [wkentaro/gdown](https://github.com/wkentaro/gdown) | 5484 ⭐ | [#246](https://github.com/wkentaro/gdown/pull/246), [#244](https://github.com/wkentaro/gdown/pull/244) |
 | [oxsecurity/megalinter](https://github.com/oxsecurity/megalinter) | 2648 ⭐ | [#3486](https://github.com/oxsecurity/megalinter/pull/3486) |
 | [nf-core/rnaseq](https://github.com/nf-core/rnaseq) | 1406 ⭐ | [#1983](https://github.com/nf-core/rnaseq/pull/1983), [#1982](https://github.com/nf-core/rnaseq/pull/1982) |
 | [actions/javascript-action](https://github.com/actions/javascript-action) | 1192 ⭐ | [#629](https://github.com/actions/javascript-action/pull/629), [#418](https://github.com/actions/javascript-action/pull/418) |
